@@ -1,16 +1,21 @@
 import Nav from '../UI/molecules/Nav/Nav.js'
 import { SideNav } from '../UI/molecules/SideNav/SideNav.js'
 import { useHomePage } from '../Application/hooks/Pages/HomePage/useHomePage.js'
+import { Box } from '@mui/material'
+import dynamic from 'next/dynamic.js'
 
+const CardGrid = dynamic(() => import('../UI/organisms/CardGrid/CardGrid.js'), { ssr: false})
 export const Home = () => {
   const { state, services } = useHomePage?.() || {} // TODO: implement useHomePage hook
-  const left = "TODO: implement left component"
-  const middle = "TODO: implement middle component"
-  const right = "TODO: implement right component"
   return (
     <>
-      <Nav />
-      <SideNav />
+      <Box sx={{ display: 'flex', height: '100vh' }}>
+        <SideNav />
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+          <Nav />
+          <CardGrid />
+        </Box>
+      </Box>
       {/* Implement Footer */}
     </>
   )

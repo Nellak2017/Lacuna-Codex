@@ -24,5 +24,5 @@ export const LoginContainer = styled('span')(({ theme }) => ({
 }))
 export const ContentContainer = styled('section')(({ theme }) => ({
     display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-evenly', columnGap: theme.spacing(2),
-    maxWidth: '1290px', width: '100%', height: '100%',
+    maxWidth: '1290px', width: '100%',
 })) // This is to make the spacing proper even for large desktops

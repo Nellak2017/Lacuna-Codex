@@ -78,12 +78,14 @@ export const SideNav = () => {
             variant="permanent"
             sx={{
                 width: open ? drawerWidth : collapsedWidth,
+                height: '100%',
                 flexShrink: 0,
                 "& .MuiDrawer-paper": {
                     width: open ? drawerWidth : collapsedWidth,
                     boxSizing: "border-box",
                     transition: "width 0.3s",
                     overflowY: "auto",
+                    position: 'inherit'
                 },
             }}
         >
