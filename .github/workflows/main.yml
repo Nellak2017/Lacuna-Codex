@@ -1,0 +1,16 @@
+name: deploy to vercel
+on: [push, pull_request]
+jobs:
+  vercel: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # deploy app to vercel
+      - name: deploy site to vercel      
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN_LACUNA_CODEX }} # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.TEAM_ID}}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
