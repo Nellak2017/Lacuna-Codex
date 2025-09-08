@@ -9,7 +9,7 @@ export const Home = () => {
   const { state, services } = useHomePage?.() || {} // TODO: implement useHomePage hook
   return (
     <>
-      <Box sx={{ display: 'flex', height: '100vh' }}>
+      <Box sx={{ display: 'flex', minHeight: '100vh', height: '100%' }}>
         <SideNav />
         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <Nav />

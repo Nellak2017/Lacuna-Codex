@@ -78,7 +78,8 @@ export const SideNav = () => {
             variant="permanent"
             sx={{
                 width: open ? drawerWidth : collapsedWidth,
-                height: '100%',
+                //height: '100%',
+                display: { xs: "none", md: "block" },
                 flexShrink: 0,
                 "& .MuiDrawer-paper": {
                     width: open ? drawerWidth : collapsedWidth,
