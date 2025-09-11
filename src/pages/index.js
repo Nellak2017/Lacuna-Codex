@@ -1,5 +1,5 @@
 import Nav from '../UI/molecules/Nav/Nav.js'
-import { SideNav } from '../UI/molecules/SideNav/SideNav.js'
+import { SideNav } from '../UI/organisms/SideNav/SideNav.js'
 // import { useHomePage } from '../Application/hooks/Pages/HomePage/useHomePage.js'
 import { Box } from '@mui/material'
 import dynamic from 'next/dynamic.js'

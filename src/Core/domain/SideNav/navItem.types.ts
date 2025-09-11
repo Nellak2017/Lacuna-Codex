@@ -1,0 +1,1 @@
+export type NavItem = { text: string, description: string, subItems?: NavItem[], }

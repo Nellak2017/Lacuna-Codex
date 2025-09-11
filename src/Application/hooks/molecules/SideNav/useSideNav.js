@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { imgTitle, imgSource, imgAlt, sampleNav, drawerWidth, collapsedWidth } from '../../../Core/constants/molecules/sideNav.constants'
+import { imgTitle, imgSource, imgAlt, sampleNav, drawerWidth, collapsedWidth } from '../../../../Core/components/organisms/sideNav.constants'
 
 // Hooks act as focus points, not source of truth generally. This is why you have constants elsewhere
 export const useSideNav = () => {

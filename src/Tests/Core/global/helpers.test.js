@@ -2,7 +2,7 @@
 import { 
     /* TODO: import your functions here to Unit Test */
     clamp,
-} from '../../../Core/utils/helpers.js'
+} from '../../../Core/shared/global.domain'
 import { fc } from '@fast-check/jest'
 
 describe('clamp', () => {

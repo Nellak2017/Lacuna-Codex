@@ -26,4 +26,5 @@ export const muiGlobalStyles = ({ theme }) => ({
     'input': { backgroundColor: theme.palette.background.paper, borderRadius: theme.spacing(2), padding: theme.spacing(2), outline: 'none', border: '0px solid transparent', color: theme.palette.text.primary, },
     'input:hover': { backgroundColor: theme.palette.action.hover, },
     '.icon': { margin: 0, padding: 0, color: theme.palette.text.primary, }, '.icon:hover': { transition: '350ms', cursor: 'pointer', color: theme.palette.primary.main, },
+    '& path': { color: theme.palette.text.primary, },
 })

@@ -1,5 +1,5 @@
 import { styled, Drawer, Box } from '@mui/material'
-import { drawerWidth, collapsedWidth } from '../../../Core/constants/molecules/sideNav.constants'
+import { drawerWidth, collapsedWidth } from '../../../Core/components/organisms/sideNav.constants'
 
 export const StyledDrawer = styled(Drawer, {
     shouldForwardProp: prop => prop !== 'open', // prevent passing `open` down to DOM
@@ -13,4 +13,4 @@ export const TopBox = styled(Box)(({ theme, open }) => ({
     padding: `${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)}`,
 }))
 export const SideNavItemContainer = styled(Box)(({ theme }) => ({ marginBottom: theme.spacing(1) }))
-export const SideNavItem = styled(Box)(() => ({ border: '1px solid red'}))
+export const SideNavItem = styled(Box)(() => ({ }))

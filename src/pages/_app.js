@@ -7,8 +7,8 @@ import { muiGlobalStyles } from '../UI/styles/globalStyles.js'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Provider } from 'react-redux'
-import store from '../Application/store.js'
-import { useLocalStorage } from '../Application/hooks/Helpers/useLocalStorage.js'
+import store from '../Application/shared/store.js'
+import { useLocalStorage } from '../Application/hooks/Shared/useLocalStorage.js'
 
 const MyApp = ({ Component, pageProps }) => {
   const { value } = useLocalStorage('themeMode')
