@@ -2,8 +2,8 @@ import { styled } from "@mui/material"
 
 export const StyledNav = styled('nav')(({ theme }) => ({
     margin: '0', padding: `0 ${theme.spacing(2)}`, position: 'sticky', top: '0', zIndex: '999',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-    backgroundColor: `${theme.palette.grey[300]}99`, boxShadow: theme.shadows[1],
+    display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: theme.shadows[1],
+    backgroundColor: `${theme.palette.grey[300]}80`, backdropFilter: 'blur(48px)', // background and backdrop filter mimiced from youtube
     '*': { color: '#fff' }, 
     'h1, a': { color: theme.palette.text.primary, },
     '& .logo:active': { filter: 'invert(100%) brightness(0%) invert(36%) sepia(80%) saturate(3178%) hue-rotate(238deg) brightness(99%) contrast(91%)', },

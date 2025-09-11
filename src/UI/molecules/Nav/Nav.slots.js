@@ -25,8 +25,6 @@ export const RightContent = ({
     state: {
         prevComponent = <></>,
         linkData = [
-            // { label: 'Departments', href: '/Departments', title: 'Go to Departments', onClick: null },
-            // { label: 'Compliance', href: '/Compliance', title: 'Go to Compliance', onClick: null },
             { label: 'Data Hub', href: '/Lacuna-Codex', title: 'Go to Data Hub', onClick: null },
             { label: 'Log in', href: '/login', title: 'Log into Lacuna Codex', onClick: null },
         ],
