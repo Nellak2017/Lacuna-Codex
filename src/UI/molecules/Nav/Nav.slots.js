@@ -11,7 +11,7 @@ const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex',
 export const LeftContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Logo className='logo' tabIndex={tabIndex}>
-            <Link href={'/'} tabIndex={tabIndex}><Image src={'/Lacuna-Codex-Logo.png'} alt={'Lacuna Codex Logo'} width={64} height={61} title={title} aria-label={title} /></Link>
+            <Link href={'/'} tabIndex={tabIndex}><Image src={'/Lacuna-Codex-Logo.png'} alt={'Lacuna Codex Logo'} width={64} height={64} title={title} aria-label={title} /></Link>
         </Logo>
         <TitleContent />
     </Box>

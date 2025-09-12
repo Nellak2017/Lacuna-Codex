@@ -14,8 +14,8 @@ export const SideNav = ({ customHook = useSideNav }) => {
     return (
         <StyledDrawer variant='permanent' open={open}>
             <TopBox open={open}>
-                {open && <Link href={'/'} tabIndex={0}><Image width={64} height={61} src={imgSource} alt={imgAlt} title={imgTitle} aria-label={imgTitle} /></Link>}
-                <IconButton onClick={handleOpen}><MenuIcon /></IconButton>
+                {open && <Link href={'/'} tabIndex={0}><Image width={64} height={64} src={imgSource} alt={imgAlt} title={imgTitle} aria-label={imgTitle} /></Link>}
+                <IconButton onClick={handleOpen} title='Collapse or Open Sidebar'><MenuIcon /></IconButton>
             </TopBox>
             <Divider />
             <List>

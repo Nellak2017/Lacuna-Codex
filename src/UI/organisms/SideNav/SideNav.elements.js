@@ -10,5 +10,5 @@ export const TopBox = styled(Box)(({ theme, open }) => ({
     display: 'flex', alignItems: 'center', justifyContent: open ? 'space-between' : 'center',
     padding: `${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)}`,
 }))
-export const SideNavItemContainer = styled(Box)(({ theme }) => ({ marginBottom: theme.spacing(1) }))
+export const SideNavItemContainer = styled('li')(({ theme }) => ({ marginBottom: theme.spacing(1) }))
 export const SideNavItem = styled(Box)(() => ({}))
