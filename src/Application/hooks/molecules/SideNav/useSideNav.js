@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { imgTitle, imgSource, imgAlt, sampleNav, drawerWidth, collapsedWidth } from '../../../../Core/components/organisms/sideNav.constants'
+import { imgTitle, imgSource, imgAlt, sampleNav, drawerWidth, collapsedWidth } from '../../../../Core/components/organisms/SideNav/SideNav.constants'
 
 // Hooks act as focus points, not source of truth generally. This is why you have constants elsewhere
 export const useSideNav = () => {
@@ -8,10 +8,7 @@ export const useSideNav = () => {
     const handleDropdown = text => setOpenDropdowns(prev => ({ ...prev, [text]: !prev[text] }))
     const handleOpen = () => setOpen(!open)
     return {
-        state: {
-            drawerWidth, collapsedWidth, imgTitle, imgSource, imgAlt, sampleNav,
-            open, openDropdowns,
-        },
+        state: { drawerWidth, collapsedWidth, imgTitle, imgSource, imgAlt, sampleNav, open, openDropdowns, },
         services: { handleOpen, handleDropdown, }
     }
 }

@@ -1,0 +1,2 @@
+import { Card, styled } from '@mui/material'
+export const StyledMediaCard = styled(Card)(() => ({ minHeight: '20vh', maxHeight: '40vh', maxWidth: '75vw', aspectRatio: '16/9', display: 'flex', alignItems: 'center', justifyContent: 'center' }))

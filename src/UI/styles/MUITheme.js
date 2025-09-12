@@ -1,7 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
-/* TODO: Override the theme with the Client Specific requirements */
-// Custom Properties: insets, logoFilter, paperBackground
+// Custom Properties: insets, logoFilter, paperBackground, xxl
 const baseTheme = {
     spacing: num => ['4px', '8px', '16px', '32px', '48px', '56px',]?.[num - 1] || '4px',
     shape: { borderRadius: 8, },
@@ -14,17 +13,10 @@ const baseTheme = {
                     textTransform: 'none', minWidth: '85px', color: theme.palette.primary.contrastText, backgroundColor: theme.palette.primary.main,
                     '& path': { color: theme.palette.primary.contrastText, },
                 })
-            },
-            variants: [],
-            defaultProps: { variant: 'contained', },
+            }, variants: [], defaultProps: { variant: 'contained', },
         },
     },
-    breakpoints: {
-        values: {
-            xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536,
-            xxl: 2006, // custom breakpoint
-        },
-    },
+    breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, xxl: 2006, }, },
 }
 const sharedPalette = {
     primary: { main: '#59e8d9', light: '#8ffbf0', dark: '#1da297', contrastText: '#000000', },

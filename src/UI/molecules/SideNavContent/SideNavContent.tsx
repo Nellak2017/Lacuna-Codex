@@ -1,6 +1,6 @@
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import { NavItemUI } from '../../../Core/components/organisms/sideNav.types'
+import { NavItemUI } from '../../../Core/components/organisms/SideNav/SideNav.types'
 type SideNavContentProps = {state?: { item?: NavItemUI, open?: boolean, openDropdowns?: Record<string, boolean> }, services?: { handleDropdown?: (id: string) => void }}
 export const SideNavContent = ({ state: { item, open, openDropdowns, } = {}, services: { handleDropdown } = {} }: SideNavContentProps) => (
     <ListItemButton onClick={() => item?.subItems && handleDropdown?.(item?.text)} sx={{ pl: 2 }}>

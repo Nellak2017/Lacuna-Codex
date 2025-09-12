@@ -7,8 +7,6 @@ import { StyledDrawer, TopBox, SideNavItemContainer, SideNavItem } from './SideN
 import { SideNavContent } from '../../molecules/SideNavContent/SideNavContent'
 import { SideNavSubContent} from '../../molecules/SideNavSubContent/SideNavSubContent'
 
-// TODO: Extract the SideNavContent and SideNavDropdownContent into custom molecules for clarity
-// TODO: Review the semantic naming conventions to ensure everything has proper nomenclature. see SideNavItemContainer and others
 export const SideNav = ({ customHook = useSideNav }) => {
     const { state, services } = customHook?.() || {}
     const { sampleNav, open, openDropdowns, imgTitle, imgSource, imgAlt, } = state || {}
