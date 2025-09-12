@@ -8,7 +8,7 @@ import { Button } from "@mui/material"
 import { AuthContainer, StyledAuthForm, InputSection, SignInContainer, CenteredContainer, SubtitleContainer } from './AuthForm.elements.js'
 import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '../../../Infra/workflows/AuthForm.handlers.js'
 import { useForm } from 'react-hook-form'
-import { useAuthForm } from '../../../Application/hooks/AuthForm/useAuthForm.js'
+import { useAuthForm } from '../../../Application/hooks/organisms/AuthForm/useAuthForm.js'
 // import { useTheme } from '@mui/material/styles'
 
 const logo = { src: '/Lacuna-Codex-Logo.png' }
