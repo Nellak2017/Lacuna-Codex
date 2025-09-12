@@ -2,7 +2,6 @@ const email = Cypress.env('TEST_EMAIL')
 const password = Cypress.env('TEST_PASSWORD')
 const invalidCredentials = "Invalid login credentials"
 const invalidEmailFormat = "Invalid email format"
-const invalidPasswordFormat = "Invalid password format"
 const emailRequired = "Email is required"
 const passwordRequired = "Password is required"
 describe('Login - Success Flow', () => {

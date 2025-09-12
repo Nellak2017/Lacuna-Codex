@@ -20,7 +20,7 @@ export const LoginContainer = styled('span')(({ theme }) => ({
         p: { fontSize: theme.typography.body1.fontSize }, svg: { fontSize: theme.typography.h3.fontSize },
         'svg:hover': { boxShadow: theme.shadows[0] }
     },
-    '.sign-up:hover': { borderBottom: `0px solid transparent`, },
+    '.sign-up:hover': { borderBottom: '0px solid transparent', },
 }))
 export const ContentContainer = styled('section')(({ theme }) => ({
     display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-evenly', columnGap: theme.spacing(2),

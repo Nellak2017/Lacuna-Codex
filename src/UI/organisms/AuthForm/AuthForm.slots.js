@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import { Button } from "@mui/material"
 // import GoogleButton from 'react-google-button'
 // import { TaskInput } from '../../atoms/TaskInput/TaskInput.js'
-import { AuthContainer, StyledAuthForm, InputSection, SignInContainer, OrSeparator, Line, Or, CenteredContainer, SubtitleContainer, ForgotPasswordButton } from './AuthForm.elements.js'
-import { handleSignInWithEmail, handleSignUpWithEmail, handleSignInWithGoogle, handleRequestPasswordReset, handleResetPassword } from '../../../Infra/workflows/AuthForm.handlers.js'
+import { AuthContainer, StyledAuthForm, InputSection, SignInContainer, CenteredContainer, SubtitleContainer } from './AuthForm.elements.js'
+import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '../../../Infra/workflows/AuthForm.handlers.js'
 import { useForm } from 'react-hook-form'
 import { useAuthForm } from '../../../Application/hooks/AuthForm/useAuthForm.js'
 // import { useTheme } from '@mui/material/styles'
@@ -28,7 +28,7 @@ const GeneralAuthForm = ({
         <CenteredContainer>
             <AuthContainer maxwidth={maxwidth}>
                 <StyledAuthForm onSubmit={handleSubmit((data => emailSubmit({ router, ...data })))} method='POST' id='email-form' maxwidth={maxwidth}>
-                    <Link href='/'><Image src={logo.src} alt='Lacuna-Codex Logo' width={128} height={96} className={'logo'} title={'Go Home'} priority={true} /></Link>
+                    <Link href='/'><Image src={logo.src} alt='Lacuna-Codex Logo' width={128} height={96} className={'logo'} title={'Go Home'} priority /></Link>
                     <h2>{title}</h2>
                     {callToAction && <SubtitleContainer>
                         <h3><p>{callToAction?.text}</p></h3>

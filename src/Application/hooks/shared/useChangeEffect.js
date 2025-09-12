@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 
+const shallowEqualArray = (a, b) => a.length === b.length && a.every((val, i) => val === b[i])
 /**
  * Like useEffect, but:
  * - Skips first render
@@ -13,4 +14,3 @@ export const useChangeEffect = (effectFn, deps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, deps)
 }
-const shallowEqualArray = (a, b) => a.length === b.length && a.every((val, i) => val === b[i])

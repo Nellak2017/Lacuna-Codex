@@ -1,7 +1,8 @@
-import { supabase } from './supabase_client.js'
-import wretch from 'wretch' // used for DX only. If it is too bloated remove for manual version
+// import { supabase } from './supabase_client.js'
+// import wretch from 'wretch' // used for DX only. If it is too bloated remove for manual version
 
 const WEB_SERVER_URL = process.env.NEXT_PUBLIC_WEB_SERVER_URL
+console.log(WEB_SERVER_URL?.[0])
 // define default serializers and deserializers
 // define displayError
 // Ex: const displayError = (consoleErrorMessage = 'Failed to fetch tasks:', toastError = 'Failed to fetch tasks') => consoleError => { console.error(consoleErrorMessage, consoleError); toast.error(toastError); }

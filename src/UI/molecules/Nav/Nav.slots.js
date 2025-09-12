@@ -18,13 +18,13 @@ export const LeftContent = ({ state: { tabIndex = 0, title = 'TODO: Update title
 )
 export const RightContent = ({
     state: {
-        prevComponent = <></>,
+        prevComponent,
         linkData = [
             { label: 'Data Hub', href: '/Lacuna-Codex', title: 'Go to Data Hub', onClick: null },
             { label: 'Log in', href: '/login', title: 'Log into Lacuna Codex', onClick: null },
         ],
         lastButtonData = { label: 'Sign Up', href: '/signup', title: 'Sign up', onClick: null },
-        postComponent = <></>,
+        postComponent,
     } = {}
 }) => (
     <LoginContainer>

@@ -1,5 +1,5 @@
 import AuthForm from './AuthForm'
-import { theme, lightTheme } from '../../../UI/styles/MUITheme.js'
+import { theme, lightTheme } from '../../styles/MUITheme.js'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
 import { AUTH_FORM_TYPES } from '../../../Core/constants/global.constants.js'
 

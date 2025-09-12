@@ -7,15 +7,16 @@ const showError = error => {
 }
 const showSuccess = message => { 
     // TODO: implement showSuccess function in AuthForm.handlers.js
-    //toast.success(message, { autoClose: 5000 }) 
+    console.log(message)
+    // toast.success(message, { autoClose: 5000 }) 
 }
 export const handleSignUpWithEmail = async ({ email, password, router }) => {
     const { error } = await signUpWithEmail(email, password)
-    if (error) { showError(error) } else { /* implement */ }
+    if (error) { showError(error) } else { router.push('/') /* implement */ }
 }
 export const handleSignInWithEmail = async ({ email, password, router }) => {
     const { error } = await signInWithEmail(email, password)
-    if (error) { showError(error) } else { /* implement */ }
+    if (error) { showError(error) } else { router.push('/') /* implement */ }
 }
 export const handleSignInWithGoogle = async () => {
     const { error } = await signInWithGoogle()

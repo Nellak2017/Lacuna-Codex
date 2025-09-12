@@ -7,8 +7,8 @@ export const useSupabaseAuth = () => {
     const [error, setError] = useState(null)
     useEffect(() => {
         const getSession = async () => {
-            const { data: { session }, error } = await supabase.auth.getSession()
-            if (error) { setError(error) } else { setUser(session?.user || null) }
+            const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+            if (sessionError) { setError(sessionError) } else { setUser(session?.user || null) }
             setLoading(false)
         }
         getSession()

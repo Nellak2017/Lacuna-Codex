@@ -1,5 +1,5 @@
 import Nav from './Nav'
-import { theme, lightTheme } from '../../../UI/styles/MUITheme.js'
+import { theme, lightTheme } from '../../styles/MUITheme.js'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
 
 const NavStories = { title: 'Molecules/Nav', component: Nav, argTypes: {}, }
