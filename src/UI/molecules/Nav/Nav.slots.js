@@ -8,15 +8,10 @@ import { Logo, SiteTitle, LoginContainer, StyledNav, ContentContainer } from './
 const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
     <SiteTitle><Link href={href} tabIndex={tabIndex} title={title} aria-label={title}>{label}</Link></SiteTitle>
 )
-export const LeftContent = ({
-    state: {
-        href = '/', logoPath = { src: '/Lacuna-Codex-Logo.png' }, alt = 'Lacuna Codex Logo', tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav',
-        dimensions: { width = 64, height = 61 } = {},
-    } = {}
-}) => (
+export const LeftContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Logo className='logo' tabIndex={tabIndex}>
-            <Link href={href} tabIndex={tabIndex}><Image src={logoPath.src} alt={alt} width={width} height={height} title={title} aria-label={title} /></Link>
+            <Link href={'/'} tabIndex={tabIndex}><Image src={'/Lacuna-Codex-Logo.png'} alt={'Lacuna Codex Logo'} width={64} height={61} title={title} aria-label={title} /></Link>
         </Logo>
         <TitleContent />
     </Box>
@@ -36,9 +31,9 @@ export const RightContent = ({
         {prevComponent}
         {linkData?.map(({ label, href, title, onClick }) => <Link key={label} href={href} title={title} onClick={e => { if (onClick) { onClick(e) } }}>{label}</Link>)}
         {lastButtonData &&
-            <Link href={lastButtonData?.href} className={'sign-up'} onClick={e => { if (lastButtonData?.onClick) { lastButtonData?.onClick(e) } }}>
-                <Button title={lastButtonData?.title} aria-label={lastButtonData?.title}>
-                    {lastButtonData?.label}<BsArrowRightShort />
+            <Link href={lastButtonData.href} className={'sign-up'} onClick={e => { if (lastButtonData?.onClick) { lastButtonData.onClick(e) } }}>
+                <Button title={lastButtonData.title} aria-label={lastButtonData.title}>
+                    {lastButtonData.label}<BsArrowRightShort />
                 </Button>
             </Link>}
         {postComponent}
