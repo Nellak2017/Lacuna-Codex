@@ -1,7 +1,7 @@
 import AuthForm from './AuthForm'
 import { theme, lightTheme } from '../../styles/MUITheme.js'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
-import { AUTH_FORM_TYPES } from '../../../Core/constants/global.constants.js'
+import { AUTH_FORM_TYPES } from '../../../Core/shared/global.constants.js' 
 
 const AuthFormStories = { title: 'Organisms/AuthForm', component: AuthForm, argTypes: {}, }
 const LightTemplate = args => <MUIThemeProvider theme={lightTheme}><AuthForm {...args} /></MUIThemeProvider>
