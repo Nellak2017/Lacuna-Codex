@@ -1,4 +1,6 @@
 export const useCardGridUpper = () => {
-    const cards = Array.from({ length: 4 }, (_, i) => `Card ${i + 1}`) // Hook. Data source being CMS
+    // const cards = Array.from({ length: 4 }, (_, i) => ({ title: `Card ${i + 1}` })) // Hook. Data source being CMS
+    const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    const cards = [{ title: 'First Card', description: lorem, src: '/stockSciFiOne.jpg' }, { title: 'Second Card', description: lorem, src: '/stockSciFiTwo.jpg' }, { title: 'Third Card', description: lorem, src: '/stockSciFiThree.jpg' }, { title: 'Fourth Card', description: lorem, src: '/stockSciFiFour.jpg' }, /*{ title: 'Fifth Card', description: lorem, src: '/stockSciFiFive.jpg' } */]
     return { state: { cards } } // No services since it is a Controlled Component, with controlling source being CMS
 }

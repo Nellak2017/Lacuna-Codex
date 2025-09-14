@@ -1,2 +1,2 @@
 import { Card, styled } from '@mui/material'
-export const StyledNewsCard = styled(Card)(() => ({ aspectRatio: '16/9', display: 'flex', alignItems: 'center', justifyContent: 'center' }))
+export const StyledNewsCard = styled(Card)(({theme}) => ({ aspectRatio: '16/9', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start', padding: `0 ${theme.spacing(4)}`, }))
