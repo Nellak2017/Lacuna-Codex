@@ -1,27 +1,30 @@
 import { Typography } from '@mui/material'
-import { StyledLeftThumbnailCard, StyledRightThumbnailCard, StyledCardTitle, StyledCardHeadline, StyledCardInfo } from './ThumbnailCard.elements'
+import { StyledLeftThumbnailCard, StyledRightThumbnailCard, StyledCardTitle, StyledCardHeadline, StyledCardInfo, StyledAvatarWrapper } from './ThumbnailCard.elements'
 import Image from 'next/image'
-export const LeftThumbnailCardSlot = ({ state: { card: { thumbnail = '/stockSciFiOne.jpg', thumbnailAlt = 'Default Image' } = {} } = {} }) => (
+export const LeftThumbnailCardSlot = ({ state: {
+    thumbnail = '/stockSciFiOne.jpg',
+    thumbnailAlt = 'Default Image' } = {} }) => (
     <StyledLeftThumbnailCard>
-        <Image
-            src={thumbnail} alt={thumbnailAlt} fill
-            style={{ objectFit: 'fill' }}
-            sizes='(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw'
-        />
+        <Image src={thumbnail} alt={thumbnailAlt} fill priority sizes='(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw' />
     </StyledLeftThumbnailCard>
-
 )
-export const RightThumbnailCardSlot = ({ state: { card: { avatar = '/stockSciFiTwo.jpg', avatarAlt = 'Default Avatar', category = 'default category', title = 'default title', info = 'default info' } = {} } = {} }) => (
+const longText = 'Subheader here really long repeated text here really long repeated text here really long repeated text here really long repeated text here really long text repeated here really long text repeated here'
+export const RightThumbnailCardSlot = ({ state: {
+    avatar = '/stockSciFiTwo.jpg',
+    avatarAlt = 'Default Avatar',
+    category = 'Category',
+    title = 'News Headline here',
+    subtitle = longText,
+    info = 'User | Apr 3, 2025' } = {} }) => (
     <StyledRightThumbnailCard>
-        <StyledCardTitle variant='h1' component='h1'>Category</StyledCardTitle>
+        <StyledCardTitle variant='h1' component='h1'>{category}</StyledCardTitle>
         <StyledCardHeadline>
-            <Typography variant='h2' component='h2'>
-                News Headline here
-            </Typography>
+            <Typography variant='h2' component='h2'>{title}</Typography>
+            <Typography variant='p' component='p'>{subtitle}</Typography>
         </StyledCardHeadline>
         <StyledCardInfo>
-            <Image src={avatar} alt={avatarAlt} width={50} height={50} />
-            <Typography variant='p' component='p'>User | Apr 3, 2025</Typography>
+            <Image src={avatar} alt={avatarAlt} width={25} height={25} />
+            <Typography variant='p' component='p'>{info}</Typography>
         </StyledCardInfo>
     </StyledRightThumbnailCard>
 )

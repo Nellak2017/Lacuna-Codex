@@ -1,29 +1,18 @@
-import Image from 'next/image'
-import { Grid, CardContent, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import { cols as myCols, infoCardSize as myInfoCardSize, spacing as mySpacing, } from '../../../../../Core/components/organisms/CardGrid/CardGrid.constants'
-import { StyledNewsCard } from './CardGridUpper.elements'
+
+import { ThumbnailCard } from '../../../../molecules/ThumbnailCard/ThumbnailCard'
+import { LeftThumbnailCardSlot, RightThumbnailCardSlot } from '../../../../molecules/ThumbnailCard/ThumbnailCard.slots'
 export const NewsSlot = ({ cards, cols = myCols, infoCardSize = myInfoCardSize, spacing = mySpacing }) => (
     <Grid container spacing={spacing} columns={cols}>
-        {cards?.map(card => (
-            <Grid key={card.title} size={infoCardSize}>
-                <StyledNewsCard sx={theme => ({
-                    position: 'relative', overflow: 'hidden', cursor: 'pointer',
-                    transition: theme.transitions.create('box-shadow', { duration: theme.transitions.duration.short, }),
-                    boxShadow: theme.shadows[1],
-                    '&:hover': { boxShadow: theme.shadows[6], },
-                })}>
-                    {card?.src && (
-                        <Image
-                            src={card.src}
-                            alt={card.title}
-                            fill
-                            style={{ objectFit: 'cover', zIndex: 0 }}
-                            priority={true}
-                            sizes="(max-width: 600px) 100vw,
-                                   (max-width: 1200px) 50vw,
-                                   33vw"
-                        />
-                    )}
+        {cards?.map(({ thumbnail, thumbnailAlt, avatar, avatarAlt, category, title, subtitle, info }) => (
+            <Grid key={title} size={infoCardSize}>
+                <ThumbnailCard>
+                    <LeftThumbnailCardSlot state={{ thumbnail, thumbnailAlt }} />
+                    <RightThumbnailCardSlot state={{ avatar, avatarAlt, category, title, subtitle, info }} />
+                </ThumbnailCard>
+            </Grid>
+            /*
                     <CardContent sx={theme => ({
                         position: 'relative',
                         zIndex: 1,
@@ -69,7 +58,6 @@ export const NewsSlot = ({ cards, cols = myCols, infoCardSize = myInfoCardSize, 
                             {card.description}
                         </Typography>
                     </CardContent>
-                </StyledNewsCard>
-            </Grid>
+            */
         ))}
     </Grid>)
