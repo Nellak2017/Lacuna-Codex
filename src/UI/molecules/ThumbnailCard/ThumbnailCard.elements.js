@@ -1,12 +1,12 @@
 import { Card, Typography, styled } from '@mui/material'
+// Warning: Tight Coupling and Magic numbers for breakpoints due to lack of automatic ellipses support in CSS. Trade off taken since I will likely use it once, following YAGNI to avoid over engineering and performance hits.
 export const StyledThumbnailCard = styled(Card)(({ theme }) => ({
-    maxHeight: '320px', padding: theme.spacing(2), aspectRatio: '16/9',
+    maxHeight: '320px', padding: theme.spacing(2), aspectRatio: '16/9', cursor: 'pointer',
     display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', columnGap: theme.spacing(2),
     [theme.breakpoints.down(360)]: { padding: 0 },
     [theme.breakpoints.up(900)]: { columnGap: `${theme.spacing(4)}` },
     [theme.breakpoints.up(1100)]: { columnGap: `${theme.spacing(2)}` },
 }))
-
 export const StyledLeftThumbnailCard = styled('section')(({ theme }) => ({
     width: '90%', aspectRatio: '1/1',
     display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start',
@@ -14,11 +14,11 @@ export const StyledLeftThumbnailCard = styled('section')(({ theme }) => ({
     transition: theme.transitions.create('box-shadow', { duration: theme.transitions.duration.short, }),
     boxShadow: theme.shadows[1], borderRadius: theme.spacing(3),
     '&:hover': { boxShadow: theme.shadows[6], },
+    '& a': { position: 'relative', display: 'block', width: '100%', height: '100%', },
     [theme.breakpoints.down(360)]: { width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0 },
     [theme.breakpoints.up(900)]: { display: 'none', height: 0 },
     [theme.breakpoints.up(1100)]: { display: 'flex', height: 'inherit', width: '90%', aspectRatio: '1/1', },
 }))
-
 export const StyledRightThumbnailCard = styled('section')(({ theme }) => ({
     width: '90%', aspectRatio: '1/1',
     display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between',
@@ -26,14 +26,12 @@ export const StyledRightThumbnailCard = styled('section')(({ theme }) => ({
     [theme.breakpoints.up(900)]: { width: '100%', height: '100%' },
     [theme.breakpoints.up(1100)]: { width: '90%', height: 'inherit', },
 }))
-
 export const StyledCardTitle = styled(Typography)(({ theme }) => ({
     width: '100%', height: 'fit-content',
     fontSize: theme.typography.h4.fontSize,
     [theme.breakpoints.down(470)]: { display: 'none', height: 0 },
     [theme.breakpoints.up(1800)]: { fontSize: theme.typography.h3.fontSize },
 }))
-
 export const StyledCardHeadline = styled('div')(({ theme }) => ({
     width: '100%', height: '65%', display: 'flex', flexDirection: 'column',
     [theme.breakpoints.up(360)]: { height: '100%' },
@@ -80,9 +78,10 @@ export const StyledCardInfo = styled('div')(({ theme }) => ({
     [theme.breakpoints.up(900)]: { display: 'none', height: 0 },
     [theme.breakpoints.up(1200)]: { display: 'flex', height: 'fit-content' },
     '& p': { overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', textOverflow: 'ellipsis', WebkitLineClamp: 1, },
-    '& img': {
+    '& img, & a': {
         cursor: 'pointer', transition: theme.transitions.create('box-shadow', { duration: theme.transitions.duration.short, }),
         boxShadow: theme.shadows[1], borderRadius: '50%',
         '&:hover': { boxShadow: theme.shadows[6], },
-    }
+    },
+    '& a': { height: 25 }
 }))

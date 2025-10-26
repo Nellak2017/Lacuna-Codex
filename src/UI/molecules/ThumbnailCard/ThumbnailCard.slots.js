@@ -1,21 +1,16 @@
 import { Typography, Tooltip } from '@mui/material'
-import { StyledLeftThumbnailCard, StyledRightThumbnailCard, StyledCardTitle, StyledCardHeadline, StyledCardInfo, StyledAvatarWrapper } from './ThumbnailCard.elements'
+import { StyledLeftThumbnailCard, StyledRightThumbnailCard, StyledCardTitle, StyledCardHeadline, StyledCardInfo } from './ThumbnailCard.elements'
 import Image from 'next/image'
-export const LeftThumbnailCardSlot = ({ state: {
-    thumbnail = '/stockSciFiOne.jpg',
-    thumbnailAlt = 'Default Image' } = {} }) => (
+import Link from 'next/link'
+export const LeftThumbnailCardSlot = ({ state: { thumbnail = '/stockSciFiOne.jpg', thumbnailAlt = 'Default Image', postUrl = 'https://www.google.com/' } = {} }) => (
     <StyledLeftThumbnailCard>
-        <Image src={thumbnail} alt={thumbnailAlt} fill priority sizes='(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw' />
+        <Link href={postUrl} onClick={e => e.stopPropagation()}>
+            <Image src={thumbnail} alt={thumbnailAlt} fill priority sizes='(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw' />
+        </Link>
     </StyledLeftThumbnailCard>
 )
 const longText = 'Subheader here really long repeated text here really long repeated text here really long repeated text here really long repeated text here really long text repeated here really long text repeated here'
-export const RightThumbnailCardSlot = ({ state: {
-    avatar = '/stockSciFiTwo.jpg',
-    avatarAlt = 'User',
-    category = 'Category',
-    title = 'News Headline here',
-    subtitle = longText,
-    info = 'Apr 30, 2025' } = {} }) => (
+export const RightThumbnailCardSlot = ({ state: { avatar = '/stockSciFiTwo.jpg', avatarAlt = 'User', category = 'Category', title = 'News Headline here', subtitle = longText, info = 'Apr 30, 2025', userUrl = 'https://duckduckgo.com/' } = {} }) => (
     <StyledRightThumbnailCard>
         <StyledCardTitle variant='h1' component='h1'>{category}</StyledCardTitle>
         <StyledCardHeadline>
@@ -24,7 +19,9 @@ export const RightThumbnailCardSlot = ({ state: {
         </StyledCardHeadline>
         <StyledCardInfo>
             <Tooltip title={avatarAlt}>
-                <Image src={avatar} alt={avatarAlt} width={25} height={25} />
+                <Link href={userUrl} onClick={e => e.stopPropagation()}>
+                    <Image src={avatar} alt={avatarAlt} width={25} height={25} />
+                </Link>
             </Tooltip>
             <Typography variant='p' component='p'>{info}</Typography>
         </StyledCardInfo>
