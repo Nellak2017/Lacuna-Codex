@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Typography, Tooltip } from '@mui/material'
 import { StyledLeftThumbnailCard, StyledRightThumbnailCard, StyledCardTitle, StyledCardHeadline, StyledCardInfo, StyledAvatarWrapper } from './ThumbnailCard.elements'
 import Image from 'next/image'
 export const LeftThumbnailCardSlot = ({ state: {
@@ -11,11 +11,11 @@ export const LeftThumbnailCardSlot = ({ state: {
 const longText = 'Subheader here really long repeated text here really long repeated text here really long repeated text here really long repeated text here really long text repeated here really long text repeated here'
 export const RightThumbnailCardSlot = ({ state: {
     avatar = '/stockSciFiTwo.jpg',
-    avatarAlt = 'Default Avatar',
+    avatarAlt = 'User',
     category = 'Category',
     title = 'News Headline here',
     subtitle = longText,
-    info = 'User | Apr 3, 2025' } = {} }) => (
+    info = 'Apr 30, 2025' } = {} }) => (
     <StyledRightThumbnailCard>
         <StyledCardTitle variant='h1' component='h1'>{category}</StyledCardTitle>
         <StyledCardHeadline>
@@ -23,7 +23,9 @@ export const RightThumbnailCardSlot = ({ state: {
             <Typography variant='p' component='p'>{subtitle}</Typography>
         </StyledCardHeadline>
         <StyledCardInfo>
-            <Image src={avatar} alt={avatarAlt} width={25} height={25} />
+            <Tooltip title={avatarAlt}>
+                <Image src={avatar} alt={avatarAlt} width={25} height={25} />
+            </Tooltip>
             <Typography variant='p' component='p'>{info}</Typography>
         </StyledCardInfo>
     </StyledRightThumbnailCard>
