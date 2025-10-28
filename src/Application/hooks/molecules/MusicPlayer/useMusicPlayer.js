@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback, } from 'react'
 import { useAudio } from 'react-use'
 
 const defaultTracks = [
-    { title: 'Fur Elise', url: '/audio/Beethoven-Fur_Elise.mp3' },
-    { title: 'Audio Example', url: '/audio/file_example_MP3_700KB.mp3' },
+    { title: 'Fur Elise', url: '/audio/Beethoven-Fur_Elise.mp3', artist: 'Beethoven' },
+    { title: 'Audio Example', url: '/audio/file_example_MP3_700KB.mp3', artist: 'Unknown Artist' },
 ]
 export const useMusicPlayer = (tracks = defaultTracks) => {
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
@@ -25,7 +25,7 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
     useEffect(() => { // For the preview in lock screen or notification screen on mobile and desktop
         if (!('mediaSession' in navigator)) return
         navigator.mediaSession.metadata = new globalThis.MediaMetadata({
-            title, artist: 'Unknown Artist', album: 'Lacuna Codex',
+            title, artist: tracks?.[currentTrackIndex]?.artist || 'Unknown Artist', album: 'Lacuna Codex',
             artwork: [{ src: '/Lacuna-Codex-Logo.png', sizes: '192x192', type: 'image/png' },],
         })
         navigator.mediaSession.setActionHandler('play', controls.play)
@@ -34,7 +34,9 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
         navigator.mediaSession.setActionHandler('nexttrack', () => { setCurrentTrackIndex(p => (p + 1) % tracks.length) })
     }, [title, controls, tracks])
     useEffect(() => { // Make the slider work in the preview
-        if ('mediaSession' in navigator) { navigator.mediaSession.setPositionState({ duration: duration || 0, playbackRate: 1, position: time || 0, }) }
+        navigator.mediaSession.setActionHandler('seekto', (details) => {
+            controls.seek(details.seekTime)
+        })
     }, [time, duration])
     const handleReplayLastTen = useCallback(() => { controls.seek(Math.max((state.time || 0) - 10, 0)) }, [state.time, controls])
     const handleForwardTen = useCallback(() => { controls.seek(Math.min((state.time || 0) + 10, state.duration || 0)) }, [state.time, state.duration, controls])
