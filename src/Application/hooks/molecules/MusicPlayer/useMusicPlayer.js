@@ -22,7 +22,7 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
         el.addEventListener('ended', handleEnded)
         return () => el.removeEventListener('ended', handleEnded)
     }, [tracks])
-    useEffect(() => {
+    useEffect(() => { // For the preview in lock screen or notification screen on mobile and desktop
         if (!('mediaSession' in navigator)) return
         navigator.mediaSession.metadata = new globalThis.MediaMetadata({
             title, artist: 'Unknown Artist', album: 'Lacuna Codex',
@@ -33,6 +33,9 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
         navigator.mediaSession.setActionHandler('previoustrack', () => { setCurrentTrackIndex(p => (p - 1 + tracks.length) % tracks.length) })
         navigator.mediaSession.setActionHandler('nexttrack', () => { setCurrentTrackIndex(p => (p + 1) % tracks.length) })
     }, [title, controls, tracks])
+    useEffect(() => { // Make the slider work in the preview
+        if ('mediaSession' in navigator) { navigator.mediaSession.setPositionState({ duration: duration || 0, playbackRate: 1, position: time || 0, }) }
+    }, [time, duration])
     const handleReplayLastTen = useCallback(() => { controls.seek(Math.max((state.time || 0) - 10, 0)) }, [state.time, controls])
     const handleForwardTen = useCallback(() => { controls.seek(Math.min((state.time || 0) + 10, state.duration || 0)) }, [state.time, state.duration, controls])
     const handlePreviousTrack = useCallback(() => { setCurrentTrackIndex(prev => (prev - 1 + tracks.length) % tracks.length) }, [tracks])
