@@ -14,7 +14,6 @@ export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
     return (
         <Box component='section' aria-label='Music Player' display='flex' flexDirection='column' alignItems='center'>
             {audio}
-            {/* <audio ref={audioRef} preload='metadata'><track kind='captions' srcLang='en' label='English captions' /></audio> */}
             <Typography variant='h3' component='h3' fontWeight='bold'>{title}</Typography>
             <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
                 <legend style={visuallyHidden}>{CONTROLS_TITLE}</legend>

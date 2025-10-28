@@ -22,6 +22,17 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
         el.addEventListener('ended', handleEnded)
         return () => el.removeEventListener('ended', handleEnded)
     }, [tracks])
+    useEffect(() => {
+        if (!('mediaSession' in navigator)) return
+        navigator.mediaSession.metadata = new globalThis.MediaMetadata({
+            title, artist: 'Unknown Artist', album: 'Lacuna Codex',
+            artwork: [{ src: '/Lacuna-Codex-Logo.png', sizes: '192x192', type: 'image/png' },],
+        })
+        navigator.mediaSession.setActionHandler('play', controls.play)
+        navigator.mediaSession.setActionHandler('pause', controls.pause)
+        navigator.mediaSession.setActionHandler('previoustrack', () => { setCurrentTrackIndex(p => (p - 1 + tracks.length) % tracks.length) })
+        navigator.mediaSession.setActionHandler('nexttrack', () => { setCurrentTrackIndex(p => (p + 1) % tracks.length) })
+    }, [title, controls, tracks])
     const handleReplayLastTen = useCallback(() => { controls.seek(Math.max((state.time || 0) - 10, 0)) }, [state.time, controls])
     const handleForwardTen = useCallback(() => { controls.seek(Math.min((state.time || 0) + 10, state.duration || 0)) }, [state.time, state.duration, controls])
     const handlePreviousTrack = useCallback(() => { setCurrentTrackIndex(prev => (prev - 1 + tracks.length) % tracks.length) }, [tracks])
@@ -30,6 +41,6 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
     const setSliderTime = useCallback(seconds => controls.seek(seconds), [controls])
     return {
         state: { audio, title, duration, currentTime: time, isPlaying: playing, audioRef: ref, },
-        services: { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime,},
+        services: { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime, },
     }
 }
