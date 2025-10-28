@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { List, Typography, Divider, IconButton, } from '@mui/material'
+import { List, Typography, Divider, IconButton, Box } from '@mui/material'
 import { Menu as MenuIcon, } from '@mui/icons-material'
 import { useSideNav } from '../../../Application/hooks/molecules/SideNav/useSideNav'
 import { StyledDrawer, TopBox, SideNavItemContainer, SideNavItem } from './SideNav.elements'
 import { SideNavContent } from '../../molecules/SideNavContent/SideNavContent'
-import { SideNavSubContent} from '../../molecules/SideNavSubContent/SideNavSubContent'
+import { SideNavSubContent } from '../../molecules/SideNavSubContent/SideNavSubContent'
+import { MusicPlayer } from '../../molecules/MusicPlayer/MusicPlayer'
 
 export const SideNav = ({ customHook = useSideNav }) => {
     const { state, services } = customHook?.() || {}
@@ -25,12 +26,13 @@ export const SideNav = ({ customHook = useSideNav }) => {
                         {header.items.map(item => (
                             <SideNavItem key={item.text}>
                                 <SideNavContent state={{ item, open, openDropdowns }} services={{ handleDropdown }} />
-                                <SideNavSubContent state={{ item, open, openDropdowns }}/>
+                                <SideNavSubContent state={{ item, open, openDropdowns }} />
                             </SideNavItem>
                         ))}
                     </SideNavItemContainer>
                 ))}
             </List>
+            {<Box sx={{ display: open ? 'inherit': 'none' }}><MusicPlayer /></Box>}
         </StyledDrawer>
     )
 }

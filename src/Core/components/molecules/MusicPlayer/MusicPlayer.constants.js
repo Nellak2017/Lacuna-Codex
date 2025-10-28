@@ -1,0 +1,11 @@
+export const ICON_BUTTON_SIZE = 32
+
+export const TOOLTIP_TITLES = {
+    CONTROLS_TITLE: 'Music Controls',
+    REPLAY_10: 'Replay last 10 seconds',
+    PREVIOUS_TRACK: 'Previous Track',
+    PLAY: 'Play',
+    PAUSE: 'Pause',
+    NEXT_TRACK: 'Next Track',
+    FORWARD_10: 'Go Forward 10 seconds',
+}
