@@ -1,73 +1,35 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, } from 'react'
+import { useAudio } from 'react-use'
 
 const defaultTracks = [
     { title: 'Fur Elise', url: '/audio/Beethoven-Fur_Elise.mp3' },
     { title: 'Audio Example', url: '/audio/file_example_MP3_700KB.mp3' },
 ]
 export const useMusicPlayer = (tracks = defaultTracks) => {
-    const audioRef = useRef(null)
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-    const [currentTime, setCurrentTime] = useState(0)
-    const [duration, setDuration] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
-    const currentTrack = tracks?.[currentTrackIndex] || { title: null, url: null }
+    const currentTrack = tracks[currentTrackIndex] || { title: null, url: null }
     const { title, url } = currentTrack
-    const handleReplayLastTen = useCallback(() => {
-        const audio = audioRef.current
-        if (!audio) return
-        audio.currentTime = Math.max(audio.currentTime - 10, 0)
-    }, [])
-    const handleForwardTen = useCallback(() => {
-        const audio = audioRef.current
-        if (!audio) return
-        audio.currentTime = Math.min(audio.currentTime + 10, audio.duration)
-    }, [])
-    const handlePreviousTrack = useCallback(() => {
-        setCurrentTrackIndex(prev => (prev - 1 + (tracks || []).length) % (tracks || [1]).length)
-    }, [(tracks || []).length])
-    const handleNextTrack = useCallback(() => {
-        setCurrentTrackIndex(prev => (prev + 1) % (tracks || [1]).length)
-    }, [(tracks || []).length])
-    const handlePlayPause = useCallback(() => {
-        const audio = audioRef.current
-        if (!audio) return
-        if (audio.paused) { audio.play().catch(() => { }); setIsPlaying(true)
-        } else { audio.pause(); setIsPlaying(false) }
-    }, [])
-    // slider handler
-    const setSliderTime = seconds => {
-        const audio = audioRef.current
-        if (!audio) return
-        audio.currentTime = seconds
-    }
-    // Sync audio events
-    useEffect(() => {
-        if (typeof globalThis === 'undefined') return // SSR safety
-        if (!audioRef.current) { audioRef.current = new Audio(url) } 
-        const audio = audioRef.current
-        if (!audio) return
-        const handleTimeUpdate = () => setCurrentTime(audio.currentTime)
-        const handleLoadedMetadata = () => setDuration(audio.duration)
-        const handleEnded = () => handleNextTrack()
-        audio.addEventListener('timeupdate', handleTimeUpdate)
-        audio.addEventListener('loadedmetadata', handleLoadedMetadata)
-        audio.addEventListener('ended', handleEnded)
-        return () => {
-            audio.removeEventListener('timeupdate', handleTimeUpdate)
-            audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
-            audio.removeEventListener('ended', handleEnded)
-        }
-    }, [handleNextTrack])
-    // load new track automatically
-    useEffect(() => {
-        const audio = audioRef.current
-        if (!audio) return
-        audio.src = url
-        audio.load()
-        if (isPlaying) audio.play().catch(() => { })
+    const [audio, state, controls, ref] = useAudio({ src: url, autoPlay: true, })
+    const { duration, time, playing } = state || { duration: 0, time: 0, playing: false }
+    useEffect(() => { // Ensure metadata loads correctly by resetting when track changes
+        controls.seek(0); controls.pause(); const el = ref.current
+        if (el) { el.load(); if (state.playing) el.play().catch(() => { }) }
     }, [url])
+    useEffect(() => { // Handle next track auto-play if current track ends
+        const el = ref.current
+        if (!el) return
+        const handleEnded = () => setCurrentTrackIndex(prev => (prev + 1) % tracks.length)
+        el.addEventListener('ended', handleEnded)
+        return () => el.removeEventListener('ended', handleEnded)
+    }, [tracks])
+    const handleReplayLastTen = useCallback(() => { controls.seek(Math.max((state.time || 0) - 10, 0)) }, [state.time, controls])
+    const handleForwardTen = useCallback(() => { controls.seek(Math.min((state.time || 0) + 10, state.duration || 0)) }, [state.time, state.duration, controls])
+    const handlePreviousTrack = useCallback(() => { setCurrentTrackIndex(prev => (prev - 1 + tracks.length) % tracks.length) }, [tracks])
+    const handleNextTrack = useCallback(() => { setCurrentTrackIndex(prev => (prev + 1) % tracks.length) }, [tracks])
+    const handlePlayPause = useCallback(() => { state.playing ? controls.pause() : controls.play() }, [state.playing, controls])
+    const setSliderTime = useCallback(seconds => controls.seek(seconds), [controls])
     return {
-        state: { title, currentTime, duration, isPlaying },
-        services: { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime },
+        state: { audio, title, duration, currentTime: time, isPlaying: playing, audioRef: ref, },
+        services: { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime,},
     }
 }

@@ -8,12 +8,13 @@ import { secondsToTimeString } from '../../../Core/components/molecules/MusicPla
 
 export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
     const { state, services } = customHook?.() || {}
-    const { audioRef, title, duration, currentTime, isPlaying } = state || {}
+    const { audio, title, duration, currentTime, isPlaying } = state || {}
     const { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime } = services || {}
     const { CONTROLS_TITLE, REPLAY_10, PREVIOUS_TRACK, PLAY, PAUSE, NEXT_TRACK, FORWARD_10 } = TOOLTIP_TITLES
     return (
         <Box component='section' aria-label='Music Player' display='flex' flexDirection='column' alignItems='center'>
-            <audio ref={audioRef} preload='metadata'><track kind='captions' srcLang='en' label='English captions' /></audio>
+            {audio}
+            {/* <audio ref={audioRef} preload='metadata'><track kind='captions' srcLang='en' label='English captions' /></audio> */}
             <Typography variant='h3' component='h3' fontWeight='bold'>{title}</Typography>
             <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
                 <legend style={visuallyHidden}>{CONTROLS_TITLE}</legend>
