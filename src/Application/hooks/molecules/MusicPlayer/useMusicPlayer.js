@@ -33,10 +33,8 @@ export const useMusicPlayer = (tracks = defaultTracks) => {
         navigator.mediaSession.setActionHandler('previoustrack', () => { setCurrentTrackIndex(p => (p - 1 + tracks.length) % tracks.length) })
         navigator.mediaSession.setActionHandler('nexttrack', () => { setCurrentTrackIndex(p => (p + 1) % tracks.length) })
     }, [title, controls, tracks])
-    useEffect(() => { // Make the slider work in the preview
-        navigator.mediaSession.setActionHandler('seekto', (details) => {
-            controls.seek(details.seekTime)
-        })
+    useEffect(() => { // Make the slider work in the preview. Warning: broken on atleast android devices
+        if ('mediaSession' in navigator) { navigator.mediaSession.setPositionState({ duration: duration || 0, playbackRate: 1, position: time || 0, }) }
     }, [time, duration])
     const handleReplayLastTen = useCallback(() => { controls.seek(Math.max((state.time || 0) - 10, 0)) }, [state.time, controls])
     const handleForwardTen = useCallback(() => { controls.seek(Math.min((state.time || 0) + 10, state.duration || 0)) }, [state.time, state.duration, controls])

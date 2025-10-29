@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
-// Custom Properties: insets, logoFilter, paperBackground, xxl
+// Custom Properties: insets, logoFilter, logoFilterActive, paperBackground, xxl
 const baseTheme = {
     spacing: num => ['4px', '8px', '16px', '32px', '48px', '56px',]?.[num - 1] || '4px',
     shape: { borderRadius: 8, },
@@ -17,6 +17,7 @@ const baseTheme = {
         },
     },
     breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, xxl: 2006, }, },
+    logoFilterActive: 'invert(100%) brightness(0%) invert(36%) sepia(80%) saturate(3178%) hue-rotate(238deg) brightness(99%) contrast(91%)',
 }
 const sharedPalette = {
     primary: { main: '#59e8d9', light: '#8ffbf0', dark: '#1da297', contrastText: '#000000', },

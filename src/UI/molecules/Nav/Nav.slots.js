@@ -1,22 +1,27 @@
-import { Button, Box } from "@mui/material"
+import { Button, Box, Tooltip } from '@mui/material'
 import Image from 'next/image'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Link from 'next/link'
-import { Logo, SiteTitle, LoginContainer, StyledNav, ContentContainer } from './Nav.elements'
 
 // The below Components are the default components for Nav that can be customized
 const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
-    <SiteTitle><Link href={href} tabIndex={tabIndex} title={title} aria-label={title}>{label}</Link></SiteTitle>
+    <Tooltip title={title}>
+        <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
+            <Link href={href} tabIndex={tabIndex} aria-label={title}>{label}</Link>
+        </Box>
+    </Tooltip>
 )
-export const LeftContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Logo className='logo' tabIndex={tabIndex}>
-            <Link href={'/'} tabIndex={tabIndex}><Image src={'/Lacuna-Codex-Logo.png'} alt={'Lacuna Codex Logo'} width={64} height={64} title={title} aria-label={title} /></Link>
-        </Logo>
+export const LeftNavContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
+    <Box display='flex' alignItems='center'>
+        <Tooltip title={title}>
+            <Box component={Link} href='/' tabIndex={tabIndex} aria-label='Go to homepage' sx={theme => ({ cursor: 'pointer', background: 'transparent', filter: theme.logoFilter, '&:active': { filter: theme.logoFilterActive }, })}>
+                <Image src='/Lacuna-Codex-Logo.png' alt='Lacuna Codex Logo' width={64} height={64} aria-label={title} priority />
+            </Box>
+        </Tooltip>
         <TitleContent />
     </Box>
 )
-export const RightContent = ({
+export const RightNavContent = ({
     state: {
         prevComponent,
         linkData = [
@@ -27,16 +32,16 @@ export const RightContent = ({
         postComponent,
     } = {}
 }) => (
-    <LoginContainer>
+    <Box aria-label='Login Container' component='div' display='flex' alignItems='center' height='100%' columnGap={3}>
         {prevComponent}
-        {linkData?.map(({ label, href, title, onClick }) => <Link key={label} href={href} title={title} onClick={e => { if (onClick) { onClick(e) } }}>{label}</Link>)}
+        {linkData?.map(({ label, href, title, onClick }) => <Tooltip key={label} title={title}><Box component={Link} href={href} onClick={e => onClick?.(e)} sx={theme => ({ color: theme.palette.text.primary, '&:hover': { color: theme.palette.primary.main, cursor: 'pointer', borderBottom: `2px solid ${theme.palette.primary.main}`, }, })}>{label}</Box></Tooltip>)}
         {lastButtonData &&
-            <Link href={lastButtonData.href} className={'sign-up'} onClick={e => { if (lastButtonData?.onClick) { lastButtonData.onClick(e) } }}>
-                <Button title={lastButtonData.title} aria-label={lastButtonData.title}>
+            <Tooltip title={lastButtonData.title}>
+                <Button component={Link} href={lastButtonData.href} aria-label={lastButtonData.title} onClick={e => lastButtonData.onClick?.(e)} color='inherit' sx={theme => ({ color: theme.palette.primary.contrastText, fontSize: theme.typography.h4.fontSize, '& svg': { fontSize: theme.typography.h3.fontSize, }, '&:hover': { borderBottom: '0px solid transparent', color: theme.palette.primary.contrastText }, })}>
                     {lastButtonData.label}<BsArrowRightShort />
                 </Button>
-            </Link>}
+            </Tooltip>
+        }
         {postComponent}
-    </LoginContainer>
+    </Box>
 )
-export const DefaultContainer = ({ left, middle, right }) => (<StyledNav><ContentContainer>{left}{middle}{right}</ContentContainer></StyledNav>)

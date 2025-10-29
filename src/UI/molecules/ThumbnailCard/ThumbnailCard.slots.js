@@ -27,25 +27,3 @@ export const RightThumbnailCardSlot = ({ state: { avatar = '/stockSciFiTwo.jpg',
         </StyledCardInfo>
     </StyledRightThumbnailCard>
 )
-/* 
-import { LeftThumbnailCardSlot, RightThumbnailCardSlot } from '..the place'
-
-export const CardGridUpper = (customHook = CardGridUpperHook) => {
-    const { state } = customHook?.(...args) || {}
-    const { cards } = state || {}
-    const [card1, card2, card3] = cards || []
-    return (
-        <GridWrapper>
-            {<ThumbnailCard>
-                <LeftThumbnailCardSlot state={card1} />
-                <RightThumbnailCardSlot state={card1} />
-             </ThumbnailCard>}
-            {Not a thumbnail card}
-            {<ThumbnailCard> 
-                <LeftThumbnailCardSlot state={card3} />
-                <RightThumbnailCardSlot state={card3} />
-            <ThumbnailCard/>}
-        </GridWrapper>
-    )
-}
-*/
