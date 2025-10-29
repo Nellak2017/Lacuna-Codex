@@ -12,7 +12,7 @@ export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
     const { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime } = services || {}
     const { CONTROLS_TITLE, REPLAY_10, PREVIOUS_TRACK, PLAY, PAUSE, NEXT_TRACK, FORWARD_10 } = TOOLTIP_TITLES
     return (
-        <Box component='section' aria-label='Music Player' display='flex' flexDirection='column' alignItems='center'>
+        <Box component='section' aria-label='Music Player' display='flex' flexDirection='column' alignItems='center' sx={{ width: '99%'}}>
             {audio}
             <Typography variant='h3' component='h3' fontWeight='bold'>{title}</Typography>
             <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
