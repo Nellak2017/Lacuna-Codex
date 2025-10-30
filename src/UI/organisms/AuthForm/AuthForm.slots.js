@@ -8,7 +8,7 @@ import { Button } from "@mui/material"
 import { AuthContainer, StyledAuthForm, InputSection, SignInContainer, CenteredContainer, SubtitleContainer } from './AuthForm.elements.js'
 import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '../../../Infra/workflows/AuthForm.handlers.js'
 import { useForm } from 'react-hook-form'
-import { useAuthForm } from '../../../Application/hooks/organisms/AuthForm/useAuthForm.js'
+import { maxwidth } from '../../../Core/components/organisms/AuthForm/AuthForm.constants.js'
 // import { useTheme } from '@mui/material/styles'
 
 const logo = { src: '/Lacuna-Codex-Logo.png' }
@@ -18,11 +18,10 @@ const AuthInput = React.forwardRef((props, ref) => (<input ref={ref} {...props} 
 // eslint-disable-next-line complexity
 const GeneralAuthForm = ({
     state: { title = 'Sign in', emailButtonText = 'Sign in with Email', callToAction = { text: "Don't have an account?", link: '/signup', linkText: 'Sign up.' }, inputSections = { topText: 'Email Address', bottomText: 'Password' }, forgotPasswordText = 'Forgot your password?', forgotPasswordRedirect = '/forgot-password' } = {},
-    services: { emailSubmit = handleSignInWithEmail } = {}, customHook = useAuthForm,
+    services: { emailSubmit = handleSignInWithEmail } = {},
 }) => {
     const router = useRouter()
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { maxwidth } = customHook?.() || {}
     // const theme = useTheme(), variant = theme.palette.mode
     return (
         <CenteredContainer>
