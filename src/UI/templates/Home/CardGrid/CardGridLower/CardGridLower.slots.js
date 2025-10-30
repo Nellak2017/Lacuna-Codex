@@ -1,5 +1,5 @@
 import { Grid, CardContent } from '@mui/material'
-import { cols as myCols, spacing as mySpacing, } from '../../../../../Core/components/organisms/CardGrid/CardGrid.constants'
+import { cols as myCols, spacing as mySpacing, } from '../../../../../Core/components/molecules/CardGrid/CardGrid.constants'
 import { StyledMediaCard } from './CardGridLower.elements'
 import CustomPlayer from '../../../../molecules/CustomPlayer/CustomPlayer'
 export const CustomMediaSlot = ({ src, cols = myCols, spacing = mySpacing }) => (

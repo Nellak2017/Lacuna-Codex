@@ -6,7 +6,7 @@ type GeneralSideNavItemProps = { state: { item: NavItemUI, open: boolean, openDr
 export const SideNavContent = ({ state: { item, open, openDropdowns, }, services: { handleClick } = {} }: GeneralSideNavItemProps) => (
     <ListItemButton onClick={() => item.subItems && handleClick?.(item.text)} sx={{ pl: 2 }}>
         <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>{item.icon}</ListItemIcon>
-        {open && (<ListItemText primary={item.text} secondary={item.description} sx={{ ml: 2 }} />)}
+        {open && (<ListItemText primary={item.text} secondary={item.description} slotProps={{ primary: { variant: 'h3' }, }} sx={{ ml: 2 }} />)}
         {item.subItems && open && (openDropdowns[item?.text] ? <ExpandLess /> : <ExpandMore />)}
     </ListItemButton>
 )
@@ -15,7 +15,7 @@ export const SideNavSubContent = ({ state: { item, open, openDropdowns, }, servi
         <List component='div' disablePadding>
             {item?.subItems?.map(sub => (
                 <ListItemButton key={sub?.text} sx={{ pl: 4 }} onClick={() => handleClick?.(item.text)}>
-                    {open && (<ListItemText primary={sub?.text} secondary={sub?.description} />)}
+                    {open && (<ListItemText primary={sub?.text} secondary={sub?.description} slotProps={{ primary: { variant: 'h4' }, }} />)}
                 </ListItemButton>
             ))}
         </List>

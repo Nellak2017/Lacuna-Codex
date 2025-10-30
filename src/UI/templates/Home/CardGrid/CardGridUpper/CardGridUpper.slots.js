@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { cols as myCols, infoCardSize as myInfoCardSize, spacing as mySpacing, } from '../../../../../Core/components/organisms/CardGrid/CardGrid.constants'
+import { cols as myCols, infoCardSize as myInfoCardSize, spacing as mySpacing, } from '../../../../../Core/components/molecules/CardGrid/CardGrid.constants'
 import { ThumbnailCard } from '../../../../molecules/ThumbnailCard/ThumbnailCard'
 import { LeftThumbnailCardSlot, RightThumbnailCardSlot } from '../../../../molecules/ThumbnailCard/ThumbnailCard.slots'
 export const NewsSlot = ({ cards, cols = myCols, infoCardSize = myInfoCardSize, spacing = mySpacing }) => (

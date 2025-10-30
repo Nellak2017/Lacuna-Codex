@@ -1,8 +1,8 @@
-import { CardGrid } from './CardGrid'
+import { CardGrid } from './CardGrid.js'
 import { theme, lightTheme } from '../../styles/MUITheme.js'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
 const CardGridStories = {
-    title: 'Organisms/CardGrid',
+    title: 'Molecules/CardGrid',
     component: CardGrid,
     argTypes: {},
 }

@@ -2,10 +2,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { List, Typography, Divider, IconButton, Box } from '@mui/material'
 import { Menu as MenuIcon, } from '@mui/icons-material'
-import { useSideNav } from '../../../Application/hooks/molecules/SideNav/useSideNav'
+import { useSideNav } from '../../../Application/hooks/organisms/SideNav/useSideNav'
 import { StyledDrawer, } from './SideNav.elements'
 import { SideNavContent, SideNavSubContent } from './SideNav.slots'
-import { MusicPlayer } from '../../molecules/MusicPlayer/MusicPlayer'
+import { MusicPlayer } from '../../organisms/MusicPlayer/MusicPlayer'
 // NOTE: SideNav does not use hole/slot architecture. It hard codes the slots due to the slots being terminal. I chose to leave it be for now since there isn't much advantage to making it fit that form yet.
 export const SideNav = ({ customHook = useSideNav }) => {
     const { state, services } = customHook?.() || {}
@@ -14,8 +14,8 @@ export const SideNav = ({ customHook = useSideNav }) => {
     return (
         <StyledDrawer variant='permanent' open={open} component='nav' aria-label='Main navigation sidebar'>
             <Box component='header' open={open} display='flex' alignItems='center' justifyContent={open ? 'space-between' : 'center'} sx={{ p: 1, px: 2 }}>
-                {open && <Link href={'/'} tabIndex={0}><Image width={64} height={64} src={imgSource} alt={imgAlt} title={imgTitle} aria-label={imgTitle} /></Link>}
                 <IconButton onClick={handleOpen} title='Collapse or Open Sidebar' aria-label='Toggle sidebar'><MenuIcon /></IconButton>
+                {open && <Link href={'/'} tabIndex={0}><Image width={64} height={64} src={imgSource} alt={imgAlt} title={imgTitle} aria-label={imgTitle} /></Link>}
             </Box>
             <Divider />
             <List>

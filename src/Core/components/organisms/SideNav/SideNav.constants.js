@@ -9,21 +9,23 @@ export const sampleNav = [{
     title: 'Pages',
     items: [
         {
-            //icon: <InboxIcon />,
-            text: 'page one', description: 'sub title 1',
+            icon: <InboxIcon />,
+            text: 'page one', // description: 'sub title 1',
             subItems: [
-                { text: 'Sub page 1', description: 'Details A' },
-                { text: 'Sub page 2', description: 'Details B' },
+                { text: 'Sub page 1',  },
+                { text: 'Sub page 2',  },
             ],
         },
         {
-            text: 'page two', description: 'sub title 2',
-            subItems: [{ text: 'Sub page 1', description: 'Details A' },],
+            icon: <InboxIcon />,
+            text: 'page two',
+            subItems: [{ text: 'Sub page 1', },],
         },
         {
-            text: 'page three', description: 'sub title 3',
+            icon: <InboxIcon />,
+            text: 'page three', 
             subItems: [],
         },
     ],
 },
-{ title: 'Settings', items: [{ icon: <InboxIcon />, text: 'Settings', description: 'Configure app' },], },]
+{ title: 'Settings', items: [{ icon: <InboxIcon />, text: 'Settings', },], },]

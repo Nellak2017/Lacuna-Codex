@@ -2,7 +2,7 @@ import { MusicPlayer } from './MusicPlayer.js'
 import { theme, lightTheme } from '../../styles/MUITheme.js'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
 const MusicPlayerStories = {
-    title: 'Molecules/MusicPlayer',
+    title: 'Organisms/MusicPlayer',
     component: MusicPlayer,
     argTypes: {},
 }

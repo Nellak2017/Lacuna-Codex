@@ -2,9 +2,9 @@ import { IoPlayBackSharp, IoPlaySharp, IoPauseSharp, IoPlayForwardSharp } from '
 import { MdOutlineForward10, MdOutlineReplay10 } from 'react-icons/md'
 import { Typography, Box, Slider, IconButton, Tooltip } from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
-import { ICON_BUTTON_SIZE, TOOLTIP_TITLES } from '../../../Core/components/molecules/MusicPlayer/MusicPlayer.constants'
-import { useMusicPlayer } from '../../../Application/hooks/molecules/MusicPlayer/useMusicPlayer'
-import { secondsToTimeString } from '../../../Core/components/molecules/MusicPlayer/MusicPlayer.domain'
+import { ICON_BUTTON_SIZE, TOOLTIP_TITLES } from '../../../Core/components/organisms/MusicPlayer/MusicPlayer.constants'
+import { useMusicPlayer } from '../../../Application/hooks/organisms/MusicPlayer/useMusicPlayer'
+import { secondsToTimeString } from '../../../Core/components/organisms/MusicPlayer/MusicPlayer.domain'
 
 export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
     const { state, services } = customHook?.() || {}
