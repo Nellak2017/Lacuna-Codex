@@ -1,4 +1,4 @@
-import { Button, Box, Tooltip } from '@mui/material'
+import { Button, Box, Tooltip, TextField, InputAdornment, IconButton } from '@mui/material'
 import Image from 'next/image'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Link from 'next/link'
@@ -16,10 +16,28 @@ const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex',
 )
 export const LeftNavContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
     <Box display='flex' alignItems='center'>
+        {/* 
         <IoMdSearch size={32} />
         <CiSquarePlus size={32} />
         <VscBell size={32} />
         <VscBellDot size={32} />
+        */}
+        <TextField
+            variant="outlined"
+            placeholder="Search..."
+            fullWidth
+            slotProps={{
+                input: {
+                    endAdornment: (
+                        <InputAdornment position='end'>
+                            <IconButton edge='end'>
+                                <IoMdSearch size={32} />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }
+            }}
+        />
         <Tooltip title={title}>
             <Box component={Link} href='/' tabIndex={tabIndex} aria-label='Go to homepage' sx={theme => ({ cursor: 'pointer', background: 'transparent', filter: theme.logoFilter, '&:active': { filter: theme.logoFilterActive }, })}>
                 <Image src='/Lacuna-Codex-Logo.png' alt='Lacuna Codex Logo' width={64} height={64} aria-label={title} priority />
