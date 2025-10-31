@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { List, Typography, Divider, IconButton, Box } from '@mui/material'
+import { List, Typography, Divider, IconButton, Box, Tooltip } from '@mui/material'
 import { Menu as MenuIcon, } from '@mui/icons-material'
 import { useSideNav } from '../../../Application/hooks/organisms/SideNav/useSideNav'
 import { StyledDrawer, } from './SideNav.elements'
@@ -14,8 +14,8 @@ export const SideNav = ({ customHook = useSideNav }) => {
     return (
         <StyledDrawer variant='permanent' open={open} component='nav' aria-label='Main navigation sidebar'>
             <Box component='header' open={open} display='flex' alignItems='center' justifyContent={open ? 'space-between' : 'center'} sx={{ p: 1, px: 2 }}>
-                <IconButton onClick={handleOpen} title='Collapse or Open Sidebar' aria-label='Toggle sidebar'><MenuIcon /></IconButton>
-                {open && <Link href={'/'} tabIndex={0}><Image width={64} height={64} src={imgSource} alt={imgAlt} title={imgTitle} aria-label={imgTitle} /></Link>}
+                <Tooltip title='Collapse or Open Sidebar'><IconButton onClick={handleOpen} aria-label='Toggle sidebar'><MenuIcon /></IconButton></Tooltip>
+                {open && <Tooltip title={imgTitle}><Link href={'/'} tabIndex={0}><Image width={64} height={64} src={imgSource} alt={imgAlt} aria-label={imgTitle} /></Link></Tooltip>}
             </Box>
             <Divider />
             <List>
