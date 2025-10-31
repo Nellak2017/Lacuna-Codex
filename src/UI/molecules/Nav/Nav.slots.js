@@ -7,7 +7,7 @@ import { CiSquarePlus } from 'react-icons/ci'
 import { IoMdSearch } from 'react-icons/io'
 
 // The below Components are the default components for Nav that can be customized
-export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {}}) => (
+export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
     <Tooltip title={title}>
         <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
             <Link href={href} tabIndex={tabIndex} aria-label={title}>{label}</Link>
@@ -15,45 +15,45 @@ export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex',
     </Tooltip>
 )
 
-const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
-    <Tooltip title={title}>
-        <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
-            <Link href={href} tabIndex={tabIndex} aria-label={title}>{label}</Link>
-        </Box>
-    </Tooltip>
-)
 export const LeftNavContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
     <Box display='flex' alignItems='center'>
         {/* 
         <IoMdSearch size={32} />
-        <CiSquarePlus size={32} />
-        <VscBell size={32} />
         <VscBellDot size={32} />
+        */}
+        {/*
+        <Tooltip title={title}>
+            <Box component={Link} href='/' tabIndex={tabIndex} aria-label='Go to homepage' sx={theme => ({ cursor: 'pointer', background: 'transparent', filter: theme.logoFilter, '&:active': { filter: theme.logoFilterActive }, })}>
+                <Image src='/Lacuna-Codex-Logo.png' alt='Lacuna Codex Logo' width={64} height={64} aria-label={title} priority />
+            </Box>
+        </Tooltip>
+        */}
+        <CiSquarePlus size={40} />
+        <VscBell size={40} />
+    </Box>
+)
+
+export const MiddleNavContent = ({ state }) => (
+    <Box sx={{ width: '33%' }}>
         <TextField
-            variant="outlined"
-            placeholder="Search..."
+            variant='outlined'
+            placeholder='Search...'
             fullWidth
             slotProps={{
                 input: {
                     endAdornment: (
                         <InputAdornment position='end'>
                             <IconButton edge='end'>
-                                <IoMdSearch size={32} />
+                                <IoMdSearch size={40} />
                             </IconButton>
                         </InputAdornment>
                     ),
                 }
             }}
         />
-        */}
-        <Tooltip title={title}>
-            <Box component={Link} href='/' tabIndex={tabIndex} aria-label='Go to homepage' sx={theme => ({ cursor: 'pointer', background: 'transparent', filter: theme.logoFilter, '&:active': { filter: theme.logoFilterActive }, })}>
-                <Image src='/Lacuna-Codex-Logo.png' alt='Lacuna Codex Logo' width={64} height={64} aria-label={title} priority />
-            </Box>
-        </Tooltip>
-        <TitleContent />
     </Box>
 )
+
 export const RightNavContent = ({
     state: {
         prevComponent,
