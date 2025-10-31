@@ -2,6 +2,9 @@ import { Button, Box, Tooltip } from '@mui/material'
 import Image from 'next/image'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Link from 'next/link'
+import { VscBell, VscBellDot } from 'react-icons/vsc'
+import { CiSquarePlus } from 'react-icons/ci'
+import { IoMdSearch } from 'react-icons/io'
 
 // The below Components are the default components for Nav that can be customized
 const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
@@ -13,6 +16,10 @@ const TitleContent = ({ state: { label = 'Lacuna Codex', href = '/Lacuna-Codex',
 )
 export const LeftNavContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
     <Box display='flex' alignItems='center'>
+        <IoMdSearch size={32} />
+        <CiSquarePlus size={32} />
+        <VscBell size={32} />
+        <VscBellDot size={32} />
         <Tooltip title={title}>
             <Box component={Link} href='/' tabIndex={tabIndex} aria-label='Go to homepage' sx={theme => ({ cursor: 'pointer', background: 'transparent', filter: theme.logoFilter, '&:active': { filter: theme.logoFilterActive }, })}>
                 <Image src='/Lacuna-Codex-Logo.png' alt='Lacuna Codex Logo' width={64} height={64} aria-label={title} priority />
