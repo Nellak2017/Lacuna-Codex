@@ -1,3 +1,3 @@
-// import <boundedContext | entity | sessionContext> as reducer from 'the appropriate location'
-export const reducers = { }
-export {  }
+import toggle from '../entities/toggle/toggle.js'
+export const reducers = { toggle, }
+export { toggle, }

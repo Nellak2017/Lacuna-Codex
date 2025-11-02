@@ -1,5 +1,6 @@
 import { Inbox as InboxIcon } from '@mui/icons-material'
 
+export const SIDE_NAV_DEFAULT_TOGGLE_STATE = true
 export const drawerWidth = 240
 export const collapsedWidth = 60
 export const imgTitle = 'TODO: Update title for Lacuna Codex app in the nav'

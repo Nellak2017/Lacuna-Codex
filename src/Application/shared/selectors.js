@@ -1,2 +1,3 @@
-// import redux, reselect, helpers, constants, finite state machines, and more..
-// export const <selector> = (selector = useSelector) => tryCatchSyncFlat(() => selector(state => ...), () => ...)
+import { useSelector } from 'react-redux'
+import { tryCatchSyncFlat } from '../../Core/shared/global.domain'
+export const isSideNavOpen = (selector = useSelector) => tryCatchSyncFlat(() => selector(state => state?.toggle?.sideNav?.toggleState), () => true)

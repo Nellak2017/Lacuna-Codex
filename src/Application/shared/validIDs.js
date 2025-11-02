@@ -1,2 +1,1 @@
-// Valid IDs for the bounded contexts
-// export const VALID_<Context name>_IDS = { [Field]: string value, ...more }
+export const VALID_TOGGLE_IDS = { SIDE_NAV_ID: 'sideNav' }

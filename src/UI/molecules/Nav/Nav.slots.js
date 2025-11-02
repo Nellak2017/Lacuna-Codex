@@ -1,10 +1,11 @@
-import { Button, Box, Tooltip, TextField, InputAdornment, IconButton, Typography } from '@mui/material'
+import { Button, Box, Tooltip, TextField, InputAdornment, IconButton, Typography, Avatar, } from '@mui/material'
 import Image from 'next/image'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Link from 'next/link'
 import { VscBell, VscBellDot } from 'react-icons/vsc'
 import { CiSquarePlus } from 'react-icons/ci'
 import { IoMdSearch } from 'react-icons/io'
+import { AvatarLink } from '../../atoms/AvatarLink/AvatarLink'
 
 // The below Components are the default components for Nav that can be customized
 export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
@@ -57,12 +58,9 @@ export const MiddleNavContent = ({ state }) => (
 export const RightNavContent = ({
     state: {
         prevComponent,
-        linkData = [
-            { label: 'Data Hub', href: '/Lacuna-Codex', title: 'Go to Data Hub', onClick: null },
-            { label: 'Log in', href: '/login', title: 'Log into Lacuna Codex', onClick: null },
-        ],
+        linkData = [{ label: 'Log in', href: '/login', title: 'Log into Lacuna Codex', onClick: null },],
         lastButtonData = { label: 'Sign Up', href: '/signup', title: 'Sign up', onClick: null },
-        postComponent,
+        postComponent = <AvatarLink />,
     } = {}
 }) => (
     <Box aria-label='Login Container' component='div' display='flex' alignItems='center' height='100%' columnGap={3}>
