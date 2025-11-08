@@ -5,9 +5,9 @@ import { VscBell, VscBellDot } from 'react-icons/vsc'
 import { CiSquarePlus } from 'react-icons/ci'
 import { IoMdSearch } from 'react-icons/io'
 import { AvatarLink } from '../../atoms/AvatarLink/AvatarLink'
-import { useSideNav } from '../../../Application/hooks/organisms/SideNav/useSideNav'
 import { Logo } from '../../atoms/AvatarLink/AvatarLink.slots'
-import { TopNavContentConstants } from '../../../Core/components/molecules/Nav/Nav.constants.js'
+import { TopNavContentConstants, ICON_SIZE } from '../../../Core/components/molecules/Nav/Nav.constants.js'
+import { useNavSlots } from '../../../Application/hooks/organisms/NavSlots/useNavSlots.js'
 
 // The below Components are the default components for Nav that can be customized
 const TopNav = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
@@ -17,32 +17,29 @@ const TopNav = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0,
         </Box>
     </Tooltip>
 )
-export const TopNavContent = ({ customHook = useSideNav }) => {
+export const TopNavContent = ({ customHook = useNavSlots }) => {
     const { state, services } = customHook?.()
     const { open } = state
     const { label, href, tabIndex, title } = TopNavContentConstants
     return (open ? <TopNav state={{ label, href, tabIndex, title }} /> : <></>)
 }
-export const LeftNavContent = ({ customHook = useSideNav }) => {
-    const { state, services } = customHook?.() // TODO: Consider if useSideNav for these slots is appropriate or if other more specific ones are better?
-    const { open } = state
-    const ICON_SIZE = 40 // TODO: Extract to constants file
-    const BellNotification = false // TODO: Make associated entity for this state if re-used elsewhere
+export const LeftNavContent = ({ customHook = useNavSlots }) => {
+    const { state, services } = customHook?.()
+    const { open, bellNotification } = state
     return (
         <Box display='flex' alignItems='center'>
             {!open && <Logo />}
             <CiSquarePlus size={ICON_SIZE} />
-            {BellNotification ? <VscBellDot size={ICON_SIZE} /> : <VscBell size={ICON_SIZE} />}
+            {bellNotification ? <VscBellDot size={ICON_SIZE} /> : <VscBell size={ICON_SIZE} />}
             {!open && <IoMdSearch size={ICON_SIZE} />}
         </Box>
     )
 }
-export const MiddleNavContent = ({ customHook = useSideNav }) => {
+export const MiddleNavContent = ({ customHook = useNavSlots }) => {
     const { state, services } = customHook?.()
     const { open } = state
-    const ICON_SIZE = 40 // TODO: Extract to same constants file as LeftNavContent
     return (
-        <Box sx={{ width: '33%' }}> {/* TODO: Fix the non-centered problem for when it is in closed state */}
+        <Box sx={{ width: '33%', textAlign: 'center' }}>
             {open
                 ? <TextField
                     variant='outlined' placeholder='Search...' fullWidth
