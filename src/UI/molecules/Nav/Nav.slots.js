@@ -10,6 +10,7 @@ import { TopNavContentConstants, ICON_SIZE } from '../../../Core/components/mole
 import { useNavSlots } from '../../../Application/hooks/organisms/NavSlots/useNavSlots.js'
 
 // The below Components are the default components for Nav that can be customized
+const IconWrapper = ({ children, ...rest }) => (<IconButton {...rest} sx={{ color: 'text.primary', '&:hover svg, &:hover svg path': { color: 'primary.main' } }}>{children}</IconButton>) // TODO: Extract this if it is used elsewhere later
 const TopNav = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
     <Tooltip title={title}>
         <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
@@ -29,9 +30,9 @@ export const LeftNavContent = ({ customHook = useNavSlots }) => {
     return (
         <Box display='flex' alignItems='center'>
             {!open && <Logo />}
-            <CiSquarePlus size={ICON_SIZE} />
-            {bellNotification ? <VscBellDot size={ICON_SIZE} /> : <VscBell size={ICON_SIZE} />}
-            {!open && <IoMdSearch size={ICON_SIZE} />}
+            <IconWrapper><CiSquarePlus size={ICON_SIZE} /></IconWrapper>
+            {bellNotification ? <IconWrapper><VscBellDot size={ICON_SIZE} /></IconWrapper> : <IconWrapper><VscBell size={ICON_SIZE} /></IconWrapper>}
+            {!open && <IconWrapper><IoMdSearch size={ICON_SIZE} /></IconWrapper>}
         </Box>
     )
 }
