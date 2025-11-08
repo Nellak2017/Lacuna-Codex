@@ -9,16 +9,25 @@ import { useSideNav } from '../../../Application/hooks/organisms/SideNav/useSide
 import { Logo } from '../../atoms/AvatarLink/AvatarLink.slots'
 
 // The below Components are the default components for Nav that can be customized
-export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
+const TopNav = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
     <Tooltip title={title}>
         <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
             <Link href={href} tabIndex={tabIndex} aria-label={title}>{label}</Link>
         </Box>
     </Tooltip>
 )
-
-export const LeftNavContent = ({ customHook = useSideNav }) => {
+export const TopNavContent = ({ customHook = useSideNav }) => {
     const { state, services } = customHook?.()
+    const { open } = state
+    // TODO: Convert these to a custom hook for the slots or maybe just this slot. Alternatively define constants for it if it is fixed
+    const label = 'Home'
+    const href = '/Lacuna-Codex'
+    const tabIndex = 0
+    const title = 'Go to Lacuna Codex App'
+    return (open ? <TopNav state={{ label, href, tabIndex, title }} /> : <></>)
+}
+export const LeftNavContent = ({ customHook = useSideNav }) => {
+    const { state, services } = customHook?.() // TODO: Consider if useSideNav for these slots is appropriate or if other more specific ones are better?
     const { open } = state
     const ICON_SIZE = 40 // TODO: Extract to constants file
     return (
@@ -31,28 +40,30 @@ export const LeftNavContent = ({ customHook = useSideNav }) => {
         </Box>
     )
 }
-
-export const MiddleNavContent = ({ state }) => (
-    <Box sx={{ width: '33%' }}>
-        <TextField
-            variant='outlined'
-            placeholder='Search...'
-            fullWidth
-            slotProps={{
-                input: {
-                    endAdornment: (
-                        <InputAdornment position='end'>
-                            <IconButton edge='end'>
-                                <IoMdSearch size={40} />
-                            </IconButton>
-                        </InputAdornment>
-                    ),
-                }
-            }}
-        />
-    </Box>
-)
-
+export const MiddleNavContent = ({ customHook = useSideNav }) => {
+    const { state, services } = customHook?.()
+    const { open } = state
+    const ICON_SIZE = 40 // TODO: Extract to same constants file as LeftNavContent
+    return (
+        <Box sx={{ width: '33%' }}> {/* TODO: Fix the non-centered problem for when it is in closed state */}
+            {open
+                ? <TextField
+                    variant='outlined' placeholder='Search...' fullWidth
+                    slotProps={{
+                        input: {
+                            endAdornment: (
+                                <InputAdornment position='end'>
+                                    <IconButton edge='end'><IoMdSearch size={ICON_SIZE} /></IconButton>
+                                </InputAdornment>
+                            ),
+                        }
+                    }}
+                />
+                : <TopNav />
+            }
+        </Box>
+    )
+}
 export const RightNavContent = ({
     state: {
         prevComponent,
