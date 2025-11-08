@@ -1,11 +1,12 @@
-import { Button, Box, Tooltip, TextField, InputAdornment, IconButton, Typography, Avatar, } from '@mui/material'
-import Image from 'next/image'
+import { Button, Box, Tooltip, TextField, InputAdornment, IconButton, } from '@mui/material'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Link from 'next/link'
 import { VscBell, VscBellDot } from 'react-icons/vsc'
 import { CiSquarePlus } from 'react-icons/ci'
 import { IoMdSearch } from 'react-icons/io'
 import { AvatarLink } from '../../atoms/AvatarLink/AvatarLink'
+import { useSideNav } from '../../../Application/hooks/organisms/SideNav/useSideNav'
+import { Logo } from '../../atoms/AvatarLink/AvatarLink.slots'
 
 // The below Components are the default components for Nav that can be customized
 export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
@@ -16,23 +17,20 @@ export const TopNavContent = ({ state: { label = 'Home', href = '/Lacuna-Codex',
     </Tooltip>
 )
 
-export const LeftNavContent = ({ state: { tabIndex = 0, title = 'TODO: Update title for Lacuna Codex app in the nav', } = {} }) => (
-    <Box display='flex' alignItems='center'>
-        {/* 
-        <IoMdSearch size={32} />
-        <VscBellDot size={32} />
-        */}
-        {/*
-        <Tooltip title={title}>
-            <Box component={Link} href='/' tabIndex={tabIndex} aria-label='Go to homepage' sx={theme => ({ cursor: 'pointer', background: 'transparent', filter: theme.logoFilter, '&:active': { filter: theme.logoFilterActive }, })}>
-                <Image src='/Lacuna-Codex-Logo.png' alt='Lacuna Codex Logo' width={64} height={64} aria-label={title} priority />
-            </Box>
-        </Tooltip>
-        */}
-        <CiSquarePlus size={40} />
-        <VscBell size={40} />
-    </Box>
-)
+export const LeftNavContent = ({ customHook = useSideNav }) => {
+    const { state, services } = customHook?.()
+    const { open } = state
+    const ICON_SIZE = 40 // TODO: Extract to constants file
+    return (
+        <Box display='flex' alignItems='center'>
+            {/* <VscBellDot size={32} /> */}
+            {!open && <Logo />}
+            <CiSquarePlus size={ICON_SIZE} />
+            <VscBell size={ICON_SIZE} />
+            {!open && <IoMdSearch size={ICON_SIZE} />}
+        </Box>
+    )
+}
 
 export const MiddleNavContent = ({ state }) => (
     <Box sx={{ width: '33%' }}>

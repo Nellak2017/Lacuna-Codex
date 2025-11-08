@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { imgTitle, imgSource, imgAlt, sampleNav, drawerWidth, collapsedWidth } from '../../../../Core/components/organisms/SideNav/SideNav.constants'
+import { SAMPLE_NAV } from '../../../../Core/components/organisms/SideNav/SideNav.constants'
 import { SIDE_NAV_DEFAULT_TOGGLE_STATE } from '../../../../Core/components/organisms/SideNav/SideNav.constants'
 import { VALID_TOGGLE_IDS } from '../../../shared/validIDs'
 import { isSideNavOpen } from '../../../shared/selectors.js'
@@ -19,7 +19,7 @@ export const useSideNav = (options = { useRedux: true }) => {
         setOpen(prev => !prev)
     }
     return {
-        state: { drawerWidth, collapsedWidth, imgTitle, imgSource, imgAlt, sampleNav, open, openDropdowns, },
+        state: { sampleNav: SAMPLE_NAV, open, openDropdowns, }, // NOTE: sampleNav will be dynamic later..
         services: { handleOpen, handleDropdown, }
     }
 }
