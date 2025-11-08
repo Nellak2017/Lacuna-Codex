@@ -1,4 +1,3 @@
-// TODO: Decide if you enable or disable this eslint config or if you edit this
 {
   "plugins": [
     "fp"

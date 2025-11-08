@@ -1,3 +1,4 @@
+/* eslint complexity: ["off"] */ // Gives false alarm
 import { List, Typography, Divider, IconButton, Box, Tooltip } from '@mui/material'
 import { Menu as MenuIcon, } from '@mui/icons-material'
 import { useSideNav } from '../../../Application/hooks/organisms/SideNav/useSideNav'

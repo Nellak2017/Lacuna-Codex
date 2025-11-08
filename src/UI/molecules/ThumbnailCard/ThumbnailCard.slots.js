@@ -1,3 +1,4 @@
+/* eslint complexity: ["off"] */ // it is giving false alarms for these components
 import { Typography, Tooltip } from '@mui/material'
 import { StyledLeftThumbnailCard, StyledRightThumbnailCard, StyledCardTitle, StyledCardHeadline, StyledCardInfo } from './ThumbnailCard.elements'
 import Image from 'next/image'

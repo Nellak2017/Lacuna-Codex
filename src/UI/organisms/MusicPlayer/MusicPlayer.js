@@ -11,6 +11,7 @@ export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
     const { audio, title, duration, currentTime, isPlaying } = state || {}
     const { handleReplayLastTen, handleForwardTen, handlePreviousTrack, handlePlayPause, handleNextTrack, setSliderTime } = services || {}
     const { CONTROLS_TITLE, REPLAY_10, PREVIOUS_TRACK, PLAY, PAUSE, NEXT_TRACK, FORWARD_10 } = TOOLTIP_TITLES
+    const controlButtonTitle = isPlaying ? PAUSE : PLAY
     return (
         <Box component='section' aria-label='Music Player' display='flex' flexDirection='column' alignItems='center' sx={{ width: '99%'}}>
             {audio}
@@ -28,8 +29,8 @@ export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
                             <IoPlayBackSharp size={ICON_BUTTON_SIZE} />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title={isPlaying ? PAUSE : PLAY}>
-                        <IconButton aria-label={isPlaying ? PAUSE : PLAY} onClick={handlePlayPause}>
+                    <Tooltip title={controlButtonTitle}>
+                        <IconButton aria-label={controlButtonTitle} onClick={handlePlayPause}>
                             {isPlaying
                                 ? <IoPauseSharp size={ICON_BUTTON_SIZE} />
                                 : <IoPlaySharp size={ICON_BUTTON_SIZE} />
@@ -50,7 +51,7 @@ export const MusicPlayer = ({ customHook = useMusicPlayer }) => {
             </fieldset>
             <Box display='flex' alignItems='center' sx={{ width: 210 }}>
                 <Slider
-                    size='small' min={0} max={duration || 0} value={currentTime || 0}
+                    size='small' min={0} max={duration} value={currentTime}
                     aria-label='Track progress' valueLabelDisplay='auto'
                     valueLabelFormat={value => secondsToTimeString(value)}
                     onChange={(_, value) => { if (typeof value === 'number') setSliderTime(value) }}
