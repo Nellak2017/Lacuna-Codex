@@ -1,1 +1,1 @@
-export const VALID_TOGGLE_IDS = { SIDE_NAV_ID: 'sideNav' }
+export const VALID_TOGGLE_IDS = { SIDE_NAV_ID: 'sideNav', NAV_SEARCH_ID: 'navSearch' }

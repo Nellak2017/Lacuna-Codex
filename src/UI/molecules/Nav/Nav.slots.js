@@ -11,6 +11,7 @@ import { useNavSlots } from '../../../Application/hooks/organisms/NavSlots/useNa
 
 // The below Components are the default components for Nav that can be customized
 const IconWrapper = ({ children, ...rest }) => (<IconButton {...rest} sx={{ color: 'text.primary', '&:hover svg, &:hover svg path': { color: 'primary.main' } }}>{children}</IconButton>) // TODO: Extract this if it is used elsewhere later
+const SearchBar = () => <TextField variant='outlined' placeholder='Search...' fullWidth slotProps={{ input: { endAdornment: (<InputAdornment position='end'><IconButton edge='end'><IoMdSearch size={ICON_SIZE} /></IconButton></InputAdornment>), } }} /> // TODO: Extract this if it is used elsewhere later
 const TopNav = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
     <Tooltip title={title}>
         <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
@@ -27,34 +28,26 @@ export const TopNavContent = ({ customHook = useNavSlots }) => {
 export const LeftNavContent = ({ customHook = useNavSlots }) => {
     const { state, services } = customHook?.()
     const { open, bellNotification } = state
+    const { toggleSearchOpen } = services
     return (
         <Box display='flex' alignItems='center'>
             {!open && <Logo />}
             <IconWrapper><CiSquarePlus size={ICON_SIZE} /></IconWrapper>
             {bellNotification ? <IconWrapper><VscBellDot size={ICON_SIZE} /></IconWrapper> : <IconWrapper><VscBell size={ICON_SIZE} /></IconWrapper>}
-            {!open && <IconWrapper><IoMdSearch size={ICON_SIZE} /></IconWrapper>}
+            {!open && <IconWrapper onClick={toggleSearchOpen}><IoMdSearch size={ICON_SIZE} /></IconWrapper>}
         </Box>
     )
 }
 export const MiddleNavContent = ({ customHook = useNavSlots }) => {
     const { state, services } = customHook?.()
-    const { open } = state
+    const { open, searchOpen } = state
     return (
         <Box sx={{ width: '33%', textAlign: 'center' }}>
             {open
-                ? <TextField
-                    variant='outlined' placeholder='Search...' fullWidth
-                    slotProps={{
-                        input: {
-                            endAdornment: (
-                                <InputAdornment position='end'>
-                                    <IconButton edge='end'><IoMdSearch size={ICON_SIZE} /></IconButton>
-                                </InputAdornment>
-                            ),
-                        }
-                    }}
-                />
-                : <TopNav />
+                ? <SearchBar />
+                : searchOpen
+                    ? <SearchBar />
+                    : <TopNav />
             }
         </Box>
     )
