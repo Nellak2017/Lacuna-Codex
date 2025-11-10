@@ -1,4 +1,4 @@
-import { Button, Box, Tooltip, TextField, InputAdornment, IconButton, } from '@mui/material'
+import { Button, Box, Tooltip, TextField, InputAdornment, IconButton, Menu, MenuItem } from '@mui/material'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Link from 'next/link'
 import { VscBell, VscBellDot } from 'react-icons/vsc'
@@ -29,14 +29,17 @@ export const TopNavContent = ({ customHook = useNavSlots }) => {
 }
 export const LeftNavContent = ({ customHook = useNavSlots }) => {
     const { state, services } = customHook?.()
-    const { open, bellNotification } = state
-    const { toggleSearchOpen } = services
+    const { open, bellNotification, bellAnchor, notificationData } = state
+    const { toggleSearchOpen, handleBellClick, handleBellClose } = services
     return (
         <Box display='flex' alignItems='center'>
             {!open && <Logo />}
             <IconWrapper onClick={() => console.warn('TODO: Add listener for plus button')} sx={{ '@media (max-width:480px)': { display: 'none' } }}><CiSquarePlus size={ICON_SIZE} /></IconWrapper>
-            {bellNotification ? <IconWrapper onClick={() => console.warn('TODO: Add listener for bell notify button')} sx={{ '@media (max-width:480px)': { display: 'none' } }}><VscBellDot size={ICON_SIZE} /></IconWrapper> : <IconWrapper onClick={() => console.warn('TODO: Add listener for bell button')} sx={{ '@media (max-width:480px)': { display: 'none' } }}><VscBell size={ICON_SIZE} /></IconWrapper>}
-            {!open && <IconWrapper onClick={toggleSearchOpen} sx={{ '@media (max-width:785px)': { display: 'none' } }}><IoMdSearch size={ICON_SIZE}/></IconWrapper>}
+            <IconWrapper onClick={handleBellClick} sx={{ '@media (max-width:480px)': { display: 'none' } }}>{bellNotification ? <VscBellDot size={ICON_SIZE} /> : <VscBell size={ICON_SIZE} />}</IconWrapper>
+            <Menu anchorEl={bellAnchor} open={Boolean(bellAnchor)} onClose={handleBellClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'top', horizontal: 'right' }}>
+                {notificationData.map(({ key, to, name }) => (<MenuItem key={key} onClick={handleBellClose}><Link href={to}>{name}</Link></MenuItem>))}
+            </Menu>
+            {!open && <IconWrapper onClick={toggleSearchOpen} sx={{ '@media (max-width:785px)': { display: 'none' } }}><IoMdSearch size={ICON_SIZE} /></IconWrapper>}
         </Box>
     )
 }
