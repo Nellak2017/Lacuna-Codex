@@ -12,8 +12,8 @@ import { useQueryParam } from '../../../Application/hooks/shared/useQueryParam.j
 import { QUERY_PARAM_KEYS } from '../../../Core/shared/global.constants.js'
 
 // The below Components are the default components for Nav that can be customized
-const IconWrapper = ({ children, ...rest }) => (<IconButton {...rest} sx={{ color: 'text.primary', '&:hover svg, &:hover svg path': { color: 'primary.main' } }}>{children}</IconButton>) // TODO: Extract this if it is used elsewhere later
-const SearchBar = ({ value, onChange }) => <TextField variant='outlined' placeholder='Search...' fullWidth value={value} onChange={e => onChange(e.target.value)} slotProps={{ input: { endAdornment: (<InputAdornment position='end'><IconButton edge='end'><IoMdSearch size={ICON_SIZE} /></IconButton></InputAdornment>), } }} /> // TODO: Extract this if it is used elsewhere later
+const IconWrapper = ({ children, sx, ...rest }) => (<IconButton {...rest} sx={{ color: 'text.primary', '&:hover svg, &:hover svg path': { color: 'primary.main' }, ...sx }}>{children}</IconButton>) // TODO: Extract this if it is used elsewhere later
+const SearchBar = ({ value, onChange, ...rest }) => <TextField {...rest} variant='outlined' placeholder='Search...' fullWidth value={value} onChange={e => onChange(e.target.value)} slotProps={{ input: { endAdornment: (<InputAdornment position='end'><IconButton edge='end'><IoMdSearch size={ICON_SIZE} /></IconButton></InputAdornment>), } }} /> // TODO: Extract this if it is used elsewhere later
 const TopNav = ({ state: { label = 'Home', href = '/Lacuna-Codex', tabIndex = 0, title = 'Go to Lacuna Codex App' } = {} }) => (
     <Tooltip title={title}>
         <Box aria-label='Site Title' component='h1' sx={theme => ({ fontSize: theme.typography.h2.fontSize, color: theme.palette.text.primary, })}>
@@ -34,9 +34,9 @@ export const LeftNavContent = ({ customHook = useNavSlots }) => {
     return (
         <Box display='flex' alignItems='center'>
             {!open && <Logo />}
-            <IconWrapper onClick={() => console.warn('TODO: Add listener for plus button')}><CiSquarePlus size={ICON_SIZE} /></IconWrapper>
-            {bellNotification ? <IconWrapper onClick={() => console.warn('TODO: Add listener for bell notify button')}><VscBellDot size={ICON_SIZE} /></IconWrapper> : <IconWrapper onClick={() => console.warn('TODO: Add listener for bell button')}><VscBell size={ICON_SIZE} /></IconWrapper>}
-            {!open && <IconWrapper onClick={toggleSearchOpen}><IoMdSearch size={ICON_SIZE} /></IconWrapper>}
+            <IconWrapper onClick={() => console.warn('TODO: Add listener for plus button')} sx={{ '@media (max-width:480px)': { display: 'none' } }}><CiSquarePlus size={ICON_SIZE} /></IconWrapper>
+            {bellNotification ? <IconWrapper onClick={() => console.warn('TODO: Add listener for bell notify button')} sx={{ '@media (max-width:480px)': { display: 'none' } }}><VscBellDot size={ICON_SIZE} /></IconWrapper> : <IconWrapper onClick={() => console.warn('TODO: Add listener for bell button')} sx={{ '@media (max-width:480px)': { display: 'none' } }}><VscBell size={ICON_SIZE} /></IconWrapper>}
+            {!open && <IconWrapper onClick={toggleSearchOpen} sx={{ '@media (max-width:785px)': { display: 'none' } }}><IoMdSearch size={ICON_SIZE}/></IconWrapper>}
         </Box>
     )
 }
@@ -45,7 +45,7 @@ export const MiddleNavContent = ({ customHook = useNavSlots }) => {
     const { open, searchOpen } = state
     const [searchValue, setSearchValue] = useQueryParam(QUERY_PARAM_KEYS.SEARCH)
     const content = (open || searchOpen) ? <SearchBar value={searchValue} onChange={setSearchValue} /> : <TopNav />
-    return (<Box sx={{ width: '33%', textAlign: 'center' }}>{content}</Box>)
+    return (<Box sx={{ width: '33%', textAlign: 'center', '@media (max-width:785px)': { display: 'none' } }}>{content}</Box>)
 }
 export const RightNavContent = ({
     state: {
@@ -68,3 +68,4 @@ export const RightNavContent = ({
         {postComponent}
     </Box>
 )
+// TODO: x < 370 px -> possible 2 layer for space (how?)
