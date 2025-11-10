@@ -3,7 +3,7 @@ import { TopNavContent, LeftNavContent, MiddleNavContent, RightNavContent } from
 
 const DefaultChildren = (<>
     <TopNavContent />
-    <ContentContainer sx={{ flexDirection: 'row', flexWrap:'nowrap', }}>
+    <ContentContainer sx={{ flexDirection: 'row', flexWrap:'nowrap', '@media (max-width:370px)': { flexDirection: 'column' }}}>
         <LeftNavContent /><MiddleNavContent /><RightNavContent />
     </ContentContainer>
 </>)

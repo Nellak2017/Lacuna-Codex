@@ -68,4 +68,4 @@ export const RightNavContent = ({
         {postComponent}
     </Box>
 )
-// TODO: x < 370 px -> possible 2 layer for space (how?)
+// TODO: x < 300 px -> Start removing stuff? (Running out of space)
